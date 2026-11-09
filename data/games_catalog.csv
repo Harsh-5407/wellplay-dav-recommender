@@ -1,0 +1,251 @@
+game_id,title,tags,avg_playtime_hrs,positive_rating_pct,min_age,visual_strain_score,cognitive_load_score,session_commitment_score,social_pressure_score,emotional_heaviness_score,reflex_intensity_score,grind_complexity_score
+1,Unpacking,"Casual,Puzzle,Relaxing,Minimalist,Singleplayer,Wholesome,Short",3.8,98,7,1.0,1.0,3.77,1.56,1.0,1.48,1.0
+2,Dorfromantik,"Strategy,Puzzle,Relaxing,Minimalist,Singleplayer,Wholesome,Turn-Based",11.4,97,7,1.0,1.28,5.15,1.7,1.0,1.0,2.25
+3,A Short Hike,"Adventure,Exploration,Wholesome,Cute,Singleplayer,Comedy,Short",2.4,99,7,4.45,1.0,3.27,1.57,1.0,3.83,2.39
+4,Stardew Valley,"Farming Sim,Relaxing,Wholesome,Co-op,Singleplayer,Pixel Graphics",64.1,98,10,2.61,1.29,7.56,3.48,1.0,4.14,4.46
+5,PowerWash Simulator,"Simulation,Relaxing,Singleplayer,Co-op,Minimalist,Wholesome",29.9,95,7,1.27,1.15,6.47,3.38,1.0,4.15,4.45
+6,Townscaper,"Casual,City Builder,Relaxing,Minimalist,Singleplayer,Wholesome",2.7,97,7,1.17,1.0,3.4,1.43,1.0,4.2,4.44
+7,Abzu,"Adventure,Exploration,Atmospheric,Relaxing,Singleplayer,Short",2.3,94,7,2.45,3.08,3.23,1.67,2.15,4.32,2.58
+8,Journey,"Adventure,Atmospheric,Exploration,Singleplayer,Wholesome,Short",2.3,96,7,4.14,2.56,3.23,1.43,1.62,4.26,2.39
+9,Coffee Talk,"Visual Novel,Relaxing,Wholesome,Singleplayer,Atmospheric,Short",4.2,96,10,1.0,1.0,3.89,1.3,1.0,1.74,2.42
+10,Spiritfarer,"Management,Wholesome,Emotional,Co-op,Singleplayer,Relaxing",26.3,96,10,2.46,1.07,6.29,3.67,1.0,2.14,4.62
+11,Slime Rancher,"Adventure,Cute,Wholesome,Singleplayer,Exploration,Relaxing",24.7,95,7,2.8,1.0,6.21,1.24,1.0,3.86,4.68
+12,Untitled Goose Game,"Comedy,Puzzle,Wholesome,Co-op,Singleplayer,Short",3.6,95,7,4.55,2.61,3.71,3.78,1.0,1.98,1.0
+13,Mini Motorways,"Strategy,Puzzle,Minimalist,Singleplayer,Short",13.0,95,7,2.72,4.44,5.33,1.22,3.69,1.43,1.0
+14,Alba: A Wildlife Adventure,"Adventure,Wholesome,Cute,Exploration,Singleplayer,Short",2.8,98,7,4.83,1.0,3.44,1.45,1.0,3.78,2.16
+15,Gris,"Platformer,Atmospheric,Emotional,Minimalist,Singleplayer,Short",3.7,97,10,3.04,4.75,3.74,1.58,4.3,4.24,2.25
+16,Portal 2,"Puzzle,Comedy,Co-op,Singleplayer,Sci-Fi,Linear",11.2,99,10,4.36,4.2,5.13,3.41,2.13,1.62,1.0
+17,The Talos Principle,"Puzzle,Philosophical,Atmospheric,Singleplayer,First-Person",15.3,97,10,4.79,4.11,5.55,1.51,3.93,1.58,2.2
+18,Baba Is You,"Puzzle,Turn-Based,Minimalist,Singleplayer,Complex",19.0,98,7,1.0,6.72,5.84,1.62,3.89,1.0,2.87
+19,Return of the Obra Dinn,"Detective,Puzzle,Mystery,Singleplayer,Minimalist",8.3,95,16,2.87,6.42,4.73,1.8,3.81,2.18,2.43
+20,Firewatch,"Adventure,Narrative,Atmospheric,Singleplayer,Short",3.9,87,16,4.61,4.64,3.8,1.52,3.96,4.04,2.57
+21,Outer Wilds,"Exploration,Mystery,Atmospheric,Space,Singleplayer",15.7,95,10,4.29,4.74,5.58,1.48,4.39,3.92,4.75
+22,It Takes Two,"Co-op,Adventure,Platformer,Comedy,Wholesome",14.2,94,12,4.36,2.45,5.45,3.22,1.0,4.14,4.11
+23,Civilization VI,"Grand Strategy,Turn-Based,Complex,Singleplayer,Multiplayer",95.3,86,12,2.58,8.58,8.12,1.76,3.92,1.81,4.77
+24,Slay the Spire,"Card Battler,Roguelike,Turn-Based,Singleplayer,Complex",57.9,95,10,2.39,7.04,7.41,1.73,3.81,1.93,4.75
+25,Into the Breach,"Strategy,Turn-Based,Minimalist,Singleplayer,Short",16.3,95,10,1.0,4.9,5.63,1.78,4.05,2.11,2.25
+26,Disco Elysium,"RPG,Narrative,Detective,Dark,Complex,Singleplayer",29.9,94,18,4.68,9.22,6.47,1.73,7.22,4.11,6.47
+27,Life is Strange,"Narrative,Emotional,Atmospheric,Singleplayer,Drama",12.6,97,16,4.56,4.4,5.28,1.76,4.38,3.83,4.34
+28,Cities: Skylines,"City Builder,Simulation,Sandbox,Singleplayer,Complex",74.7,93,7,4.62,6.48,7.77,1.63,3.79,3.86,7.0
+29,Subnautica,"Survival,Exploration,Open World,Crafting,Atmospheric,Singleplayer",39.7,96,10,4.63,4.55,6.87,1.26,3.89,3.81,10.0
+30,Dave the Diver,"Adventure,Management,Comedy,Wholesome,Singleplayer",28.5,99,10,4.49,3.02,6.41,1.46,1.0,1.92,4.64
+31,Counter-Strike 2,"FPS,Competitive,PvP,Fast-Paced,Multiplayer,High-Reflex",277.3,88,18,9.68,4.32,9.66,8.51,4.12,10.0,4.85
+32,Valorant,"FPS,Competitive,PvP,Fast-Paced,Neon,Multiplayer,High-Reflex",250.0,87,16,10.0,4.7,9.51,9.07,3.86,10.0,4.56
+33,Apex Legends,"Battle Royale,FPS,Competitive,PvP,Fast-Paced,High-Reflex",205.9,81,16,10.0,4.41,9.23,9.01,3.85,10.0,4.55
+34,Dota 2,"MOBA,Competitive,PvP,Complex,Multiplayer,High-Reflex",452.3,81,16,4.84,8.56,10.0,8.63,4.14,6.69,4.3
+35,Elden Ring,"Souls-like,Dark,Open World,Complex,High-Reflex,Singleplayer",79.8,92,18,4.69,9.06,7.87,1.62,6.89,6.63,7.05
+36,Sekiro: Shadows Die Twice,"Souls-like,Fast-Paced,High-Reflex,Dark,Singleplayer",45.9,93,18,7.09,6.37,7.08,1.2,7.1,9.36,4.16
+37,DOOM Eternal,"FPS,Fast-Paced,Gore,Neon,High-Reflex,Singleplayer",17.4,92,18,10.0,4.12,5.72,1.55,6.95,10.0,4.36
+38,Hotline Miami,"Fast-Paced,Neon,Gore,High-Reflex,Dark,Singleplayer,Short",5.4,99,18,10.0,4.79,4.19,1.35,9.63,9.44,2.53
+39,Geometry Dash,"Rhythm,Fast-Paced,Neon,High-Reflex,Singleplayer",28.4,95,7,9.32,4.87,6.4,1.47,4.27,10.0,4.43
+40,Phasmophobia,"Psychological Horror,Dark,Co-op,Multiplayer,Atmospheric",37.1,97,16,4.21,4.88,6.78,3.63,9.63,3.92,4.45
+41,Outlast,"Psychological Horror,Dark,Gore,Singleplayer,Fast-Paced",7.0,95,18,9.12,4.87,4.52,1.7,10.0,6.73,4.24
+42,This War of Mine,"Survival,Dark,Tragedy,Management,Singleplayer",16.1,93,18,4.29,4.18,5.62,1.31,10.0,1.91,6.81
+43,"Papers, Please","Simulation,Dark,Tragedy,Puzzle,Singleplayer,Short",6.3,98,16,4.59,4.44,4.38,1.35,9.88,2.01,1.0
+44,Rust,"Survival,Open World,PvP,Crafting,Competitive,Multiplayer",265.4,89,18,4.18,4.35,9.6,9.09,3.74,3.61,10.0
+45,Cyberpunk 2077,"RPG,Open World,Neon,Dark,Fast-Paced,Singleplayer",65.5,85,18,9.24,4.45,7.59,1.44,7.09,6.91,8.74
+46,Hades,"Roguelike,Fast-Paced,High-Reflex,Singleplayer,Action",33.7,97,12,7.35,4.5,6.64,1.52,4.15,10.0,4.86
+47,Cuphead,"Platformer,Fast-Paced,High-Reflex,Co-op,Singleplayer",15.9,97,10,7.07,4.85,5.6,3.55,3.91,9.71,4.47
+48,Rocket League,"Sports,Competitive,PvP,Fast-Paced,Multiplayer,High-Reflex",152.1,90,7,7.1,4.76,8.8,8.89,3.77,9.42,4.27
+49,Overcooked! 2,"Co-op,Fast-Paced,Comedy,Wholesome,Multiplayer,Short",10.6,93,7,6.68,2.85,5.05,3.24,1.0,7.08,2.12
+50,Terraria,"Sandbox,Crafting,Open World,Co-op,Singleplayer,Pixel Graphics",98.5,95,12,4.5,4.65,8.17,3.41,4.35,3.63,10.0
+51,Unpacking (Edition 2),"Casual,Puzzle,Relaxing,Minimalist,Singleplayer,Wholesome,Short",4.6,97,7,1.0,1.0,4.0,1.68,1.0,1.73,1.0
+52,Dorfromantik (Edition 2),"Strategy,Puzzle,Relaxing,Minimalist,Singleplayer,Wholesome,Turn-Based",13.0,99,7,1.0,1.04,5.33,1.64,1.0,1.0,2.53
+53,A Short Hike (Edition 2),"Adventure,Exploration,Wholesome,Cute,Singleplayer,Comedy,Short",2.5,97,7,4.36,1.22,3.32,1.43,1.0,4.32,2.17
+54,Stardew Valley (Edition 2),"Farming Sim,Relaxing,Wholesome,Co-op,Singleplayer,Pixel Graphics",61.5,99,10,2.76,1.01,7.5,3.47,1.0,3.86,4.64
+55,PowerWash Simulator (Edition 2),"Simulation,Relaxing,Singleplayer,Co-op,Minimalist,Wholesome",37.6,95,7,1.0,1.24,6.8,3.78,1.0,3.64,4.69
+56,Townscaper (Edition 2),"Casual,City Builder,Relaxing,Minimalist,Singleplayer,Wholesome",3.0,95,7,1.0,1.0,3.51,1.66,1.0,3.68,4.17
+57,Abzu (Edition 2),"Adventure,Exploration,Atmospheric,Relaxing,Singleplayer,Short",2.7,92,7,2.62,3.01,3.4,1.29,1.81,3.79,2.57
+58,Journey (Edition 2),"Adventure,Atmospheric,Exploration,Singleplayer,Wholesome,Short",2.2,96,7,4.29,3.03,3.19,1.56,1.68,4.17,2.49
+59,Coffee Talk (Edition 2),"Visual Novel,Relaxing,Wholesome,Singleplayer,Atmospheric,Short",4.3,95,10,1.0,1.0,3.92,1.46,1.0,1.72,2.56
+60,Spiritfarer (Edition 2),"Management,Wholesome,Emotional,Co-op,Singleplayer,Relaxing",30.0,98,10,2.96,1.1,6.48,3.61,1.0,1.72,4.48
+61,Slime Rancher (Edition 2),"Adventure,Cute,Wholesome,Singleplayer,Exploration,Relaxing",19.2,95,7,2.48,1.0,5.86,1.21,1.0,3.63,4.81
+62,Untitled Goose Game (Edition 2),"Comedy,Puzzle,Wholesome,Co-op,Singleplayer,Short",3.5,95,7,4.84,2.5,3.68,3.62,1.0,1.53,1.0
+63,Mini Motorways (Edition 2),"Strategy,Puzzle,Minimalist,Singleplayer,Short",13.1,93,7,2.8,4.57,5.34,1.74,3.64,1.62,1.0
+64,Alba: A Wildlife Adventure (Edition 2),"Adventure,Wholesome,Cute,Exploration,Singleplayer,Short",3.4,98,7,4.19,1.0,3.65,1.3,1.0,3.91,2.28
+65,Gris (Edition 2),"Platformer,Atmospheric,Emotional,Minimalist,Singleplayer,Short",3.7,98,10,3.08,4.89,3.74,1.62,4.03,3.85,2.75
+66,Portal 2 (Edition 2),"Puzzle,Comedy,Co-op,Singleplayer,Sci-Fi,Linear",10.6,99,10,4.21,4.16,5.05,3.76,1.73,1.86,1.0
+67,The Talos Principle (Edition 2),"Puzzle,Philosophical,Atmospheric,Singleplayer,First-Person",15.7,94,10,4.54,4.23,5.58,1.45,4.22,1.78,2.89
+68,Baba Is You (Edition 2),"Puzzle,Turn-Based,Minimalist,Singleplayer,Complex",19.3,97,7,1.0,7.08,5.87,1.71,4.27,1.0,2.43
+69,Return of the Obra Dinn (Edition 2),"Detective,Puzzle,Mystery,Singleplayer,Minimalist",8.4,97,16,2.95,7.1,4.75,1.8,4.04,2.02,2.86
+70,Firewatch (Edition 2),"Adventure,Narrative,Atmospheric,Singleplayer,Short",5.0,87,16,4.29,4.26,4.1,1.35,3.82,3.77,2.8
+71,Outer Wilds (Edition 2),"Exploration,Mystery,Atmospheric,Space,Singleplayer",19.4,94,10,4.39,4.19,5.87,1.6,4.02,4.22,4.52
+72,It Takes Two (Edition 2),"Co-op,Adventure,Platformer,Comedy,Wholesome",14.4,97,12,4.55,3.0,5.46,3.44,1.0,3.62,4.7
+73,Civilization VI (Edition 2),"Grand Strategy,Turn-Based,Complex,Singleplayer,Multiplayer",98.4,85,12,2.94,9.22,8.17,1.57,4.38,1.89,4.61
+74,Slay the Spire (Edition 2),"Card Battler,Roguelike,Turn-Based,Singleplayer,Complex",55.9,97,10,3.02,6.58,7.36,1.51,4.23,1.72,4.6
+75,Into the Breach (Edition 2),"Strategy,Turn-Based,Minimalist,Singleplayer,Short",17.7,96,10,1.14,4.47,5.75,1.71,4.22,1.45,2.14
+76,Disco Elysium (Edition 2),"RPG,Narrative,Detective,Dark,Complex,Singleplayer",33.2,93,18,4.36,9.01,6.62,1.34,6.66,3.7,6.5
+77,Life is Strange (Edition 2),"Narrative,Emotional,Atmospheric,Singleplayer,Drama",12.5,97,16,4.25,4.38,5.27,1.74,3.98,4.13,4.24
+78,Cities: Skylines (Edition 2),"City Builder,Simulation,Sandbox,Singleplayer,Complex",68.1,93,7,4.76,6.58,7.64,1.41,3.63,4.04,6.83
+79,Subnautica (Edition 2),"Survival,Exploration,Open World,Crafting,Atmospheric,Singleplayer",36.4,95,10,4.2,4.36,6.75,1.39,3.67,3.98,10.0
+80,Dave the Diver (Edition 2),"Adventure,Management,Comedy,Wholesome,Singleplayer",25.1,97,10,4.84,2.35,6.23,1.37,1.0,2.0,4.25
+81,Counter-Strike 2 (Edition 2),"FPS,Competitive,PvP,Fast-Paced,Multiplayer,High-Reflex",228.2,86,18,9.71,4.53,9.38,8.93,3.65,10.0,4.21
+82,Valorant (Edition 2),"FPS,Competitive,PvP,Fast-Paced,Neon,Multiplayer,High-Reflex",232.4,85,16,10.0,4.19,9.41,8.77,4.03,10.0,4.32
+83,Apex Legends (Edition 2),"Battle Royale,FPS,Competitive,PvP,Fast-Paced,High-Reflex",173.4,79,16,10.0,4.77,8.98,8.55,4.03,10.0,4.37
+84,Dota 2 (Edition 2),"MOBA,Competitive,PvP,Complex,Multiplayer,High-Reflex",396.9,81,16,4.73,8.9,10.0,8.55,4.03,6.87,4.7
+85,Elden Ring (Edition 2),"Souls-like,Dark,Open World,Complex,High-Reflex,Singleplayer",83.3,93,18,4.4,8.77,7.93,1.74,7.09,6.6,6.8
+86,Sekiro: Shadows Die Twice (Edition 2),"Souls-like,Fast-Paced,High-Reflex,Dark,Singleplayer",39.9,93,18,6.79,6.38,6.88,1.29,6.8,9.33,4.25
+87,DOOM Eternal (Edition 2),"FPS,Fast-Paced,Gore,Neon,High-Reflex,Singleplayer",16.8,89,18,10.0,4.52,5.67,1.45,7.39,10.0,4.42
+88,Hotline Miami (Edition 2),"Fast-Paced,Neon,Gore,High-Reflex,Dark,Singleplayer,Short",6.8,98,18,10.0,4.88,4.48,1.49,10.0,9.86,2.67
+89,Geometry Dash (Edition 2),"Rhythm,Fast-Paced,Neon,High-Reflex,Singleplayer",30.3,92,7,9.32,4.72,6.49,1.31,3.86,10.0,4.51
+90,Phasmophobia (Edition 2),"Psychological Horror,Dark,Co-op,Multiplayer,Atmospheric",32.3,94,16,4.59,4.33,6.58,3.55,9.72,3.98,4.53
+91,Outlast (Edition 2),"Psychological Horror,Dark,Gore,Singleplayer,Fast-Paced",5.6,95,18,9.46,4.54,4.24,1.53,10.0,6.95,4.17
+92,This War of Mine (Edition 2),"Survival,Dark,Tragedy,Management,Singleplayer",16.0,92,18,4.71,4.58,5.61,1.48,9.93,1.68,7.14
+93,"Papers, Please (Edition 2)","Simulation,Dark,Tragedy,Puzzle,Singleplayer,Short",6.6,97,16,4.43,4.85,4.44,1.79,9.76,1.7,1.0
+94,Rust (Edition 2),"Survival,Open World,PvP,Crafting,Competitive,Multiplayer",319.9,88,18,4.77,4.21,9.87,8.98,3.76,3.73,10.0
+95,Cyberpunk 2077 (Edition 2),"RPG,Open World,Neon,Dark,Fast-Paced,Singleplayer",65.7,84,18,9.61,4.83,7.59,1.39,7.07,6.95,9.06
+96,Hades (Edition 2),"Roguelike,Fast-Paced,High-Reflex,Singleplayer,Action",37.2,98,12,7.1,4.53,6.78,1.46,4.06,10.0,4.41
+97,Cuphead (Edition 2),"Platformer,Fast-Paced,High-Reflex,Co-op,Singleplayer",14.1,98,10,7.33,4.6,5.44,3.27,4.35,9.7,4.37
+98,Rocket League (Edition 2),"Sports,Competitive,PvP,Fast-Paced,Multiplayer,High-Reflex",133.8,90,7,7.0,4.69,8.61,8.84,4.4,9.8,4.67
+99,Overcooked! 2 (Edition 2),"Co-op,Fast-Paced,Comedy,Wholesome,Multiplayer,Short",11.9,89,7,6.63,2.76,5.21,3.66,1.0,6.67,2.76
+100,Terraria (Edition 2),"Sandbox,Crafting,Open World,Co-op,Singleplayer,Pixel Graphics",79.5,98,12,4.47,4.58,7.86,3.5,4.03,3.99,10.0
+101,Unpacking (Edition 3),"Casual,Puzzle,Relaxing,Minimalist,Singleplayer,Wholesome,Short",4.3,96,7,1.01,1.0,3.92,1.53,1.0,1.68,1.0
+102,Dorfromantik (Edition 3),"Strategy,Puzzle,Relaxing,Minimalist,Singleplayer,Wholesome,Turn-Based",13.5,96,7,1.0,1.0,5.38,1.55,1.0,1.0,2.11
+103,A Short Hike (Edition 3),"Adventure,Exploration,Wholesome,Cute,Singleplayer,Comedy,Short",2.8,99,7,4.18,1.24,3.44,1.67,1.0,4.12,2.72
+104,Stardew Valley (Edition 3),"Farming Sim,Relaxing,Wholesome,Co-op,Singleplayer,Pixel Graphics",62.6,96,10,2.64,1.09,7.52,3.76,1.0,3.96,4.19
+105,PowerWash Simulator (Edition 3),"Simulation,Relaxing,Singleplayer,Co-op,Minimalist,Wholesome",40.1,98,7,1.0,1.24,6.89,3.72,1.0,4.07,4.42
+106,Townscaper (Edition 3),"Casual,City Builder,Relaxing,Minimalist,Singleplayer,Wholesome",2.6,93,7,1.0,1.0,3.36,1.56,1.0,3.93,4.79
+107,Abzu (Edition 3),"Adventure,Exploration,Atmospheric,Relaxing,Singleplayer,Short",2.8,92,7,2.68,3.03,3.44,1.55,1.43,4.33,2.3
+108,Journey (Edition 3),"Adventure,Atmospheric,Exploration,Singleplayer,Wholesome,Short",2.0,96,7,4.44,3.03,3.09,1.42,1.86,4.11,2.11
+109,Coffee Talk (Edition 3),"Visual Novel,Relaxing,Wholesome,Singleplayer,Atmospheric,Short",4.7,93,10,1.27,1.0,4.02,1.45,1.0,2.2,2.5
+110,Spiritfarer (Edition 3),"Management,Wholesome,Emotional,Co-op,Singleplayer,Relaxing",28.8,98,10,2.62,1.0,6.42,3.68,1.0,1.77,4.6
+111,Slime Rancher (Edition 3),"Adventure,Cute,Wholesome,Singleplayer,Exploration,Relaxing",21.2,97,7,2.35,1.0,6.0,1.47,1.0,3.95,4.42
+112,Untitled Goose Game (Edition 3),"Comedy,Puzzle,Wholesome,Co-op,Singleplayer,Short",3.6,96,7,4.25,2.99,3.71,3.77,1.0,1.62,1.0
+113,Mini Motorways (Edition 3),"Strategy,Puzzle,Minimalist,Singleplayer,Short",13.6,96,7,2.97,4.79,5.39,1.44,4.04,1.6,1.0
+114,Alba: A Wildlife Adventure (Edition 3),"Adventure,Wholesome,Cute,Exploration,Singleplayer,Short",3.0,95,7,4.74,1.0,3.51,1.59,1.0,3.68,2.29
+115,Gris (Edition 3),"Platformer,Atmospheric,Emotional,Minimalist,Singleplayer,Short",4.3,96,10,3.07,4.86,3.92,1.28,3.93,3.86,2.17
+116,Portal 2 (Edition 3),"Puzzle,Comedy,Co-op,Singleplayer,Sci-Fi,Linear",10.4,97,10,4.27,4.12,5.03,3.31,1.87,1.74,1.0
+117,The Talos Principle (Edition 3),"Puzzle,Philosophical,Atmospheric,Singleplayer,First-Person",19.7,96,10,4.37,4.76,5.89,1.42,3.63,2.06,2.38
+118,Baba Is You (Edition 3),"Puzzle,Turn-Based,Minimalist,Singleplayer,Complex",21.6,96,7,1.0,6.54,6.02,1.77,4.21,1.0,2.79
+119,Return of the Obra Dinn (Edition 3),"Detective,Puzzle,Mystery,Singleplayer,Minimalist",9.0,94,16,2.69,6.71,4.84,1.65,4.16,1.72,2.27
+120,Firewatch (Edition 3),"Adventure,Narrative,Atmospheric,Singleplayer,Short",4.7,90,16,4.21,4.82,4.02,1.61,4.15,4.26,2.52
+121,Outer Wilds (Edition 3),"Exploration,Mystery,Atmospheric,Space,Singleplayer",19.7,93,10,4.32,4.54,5.89,1.59,4.26,3.77,4.11
+122,It Takes Two (Edition 3),"Co-op,Adventure,Platformer,Comedy,Wholesome",11.6,94,12,4.31,2.89,5.17,3.35,1.0,4.0,4.56
+123,Civilization VI (Edition 3),"Grand Strategy,Turn-Based,Complex,Singleplayer,Multiplayer",104.6,88,12,2.61,8.92,8.26,1.23,3.73,1.99,4.17
+124,Slay the Spire (Edition 3),"Card Battler,Roguelike,Turn-Based,Singleplayer,Complex",56.7,96,10,2.35,6.97,7.38,1.46,4.33,1.98,4.59
+125,Into the Breach (Edition 3),"Strategy,Turn-Based,Minimalist,Singleplayer,Short",18.2,96,10,1.0,4.32,5.78,1.52,3.73,2.07,2.78
+126,Disco Elysium (Edition 3),"RPG,Narrative,Detective,Dark,Complex,Singleplayer",36.4,94,18,4.37,9.12,6.75,1.26,6.66,4.18,6.8
+127,Life is Strange (Edition 3),"Narrative,Emotional,Atmospheric,Singleplayer,Drama",14.8,95,16,4.47,4.16,5.5,1.25,3.6,4.37,4.1
+128,Cities: Skylines (Edition 3),"City Builder,Simulation,Sandbox,Singleplayer,Complex",66.1,95,7,4.17,7.03,7.6,1.28,4.36,3.96,6.55
+129,Subnautica (Edition 3),"Survival,Exploration,Open World,Crafting,Atmospheric,Singleplayer",38.5,96,10,4.69,4.75,6.83,1.6,4.15,4.28,10.0
+130,Dave the Diver (Edition 3),"Adventure,Management,Comedy,Wholesome,Singleplayer",24.9,97,10,4.89,3.06,6.22,1.22,1.0,2.14,4.24
+131,Counter-Strike 2 (Edition 3),"FPS,Competitive,PvP,Fast-Paced,Multiplayer,High-Reflex",255.1,86,18,9.35,4.2,9.54,8.94,3.75,10.0,4.44
+132,Valorant (Edition 3),"FPS,Competitive,PvP,Fast-Paced,Neon,Multiplayer,High-Reflex",239.5,86,16,10.0,4.36,9.45,9.0,3.63,10.0,4.28
+133,Apex Legends (Edition 3),"Battle Royale,FPS,Competitive,PvP,Fast-Paced,High-Reflex",159.5,79,16,10.0,4.52,8.86,8.76,3.92,10.0,4.74
+134,Dota 2 (Edition 3),"MOBA,Competitive,PvP,Complex,Multiplayer,High-Reflex",404.6,80,16,4.69,8.92,10.0,8.76,4.3,6.73,4.47
+135,Elden Ring (Edition 3),"Souls-like,Dark,Open World,Complex,High-Reflex,Singleplayer",97.5,93,18,4.8,8.92,8.16,1.76,7.24,7.2,6.68
+136,Sekiro: Shadows Die Twice (Edition 3),"Souls-like,Fast-Paced,High-Reflex,Dark,Singleplayer",45.4,97,18,6.63,6.68,7.06,1.55,6.82,9.52,4.17
+137,DOOM Eternal (Edition 3),"FPS,Fast-Paced,Gore,Neon,High-Reflex,Singleplayer",17.1,92,18,10.0,4.29,5.7,1.27,6.88,10.0,4.34
+138,Hotline Miami (Edition 3),"Fast-Paced,Neon,Gore,High-Reflex,Dark,Singleplayer,Short",5.5,95,18,10.0,4.83,4.21,1.23,9.69,9.51,2.2
+139,Geometry Dash (Edition 3),"Rhythm,Fast-Paced,Neon,High-Reflex,Singleplayer",34.1,95,7,9.73,4.17,6.66,1.45,4.3,10.0,4.47
+140,Phasmophobia (Edition 3),"Psychological Horror,Dark,Co-op,Multiplayer,Atmospheric",36.2,94,16,4.69,4.15,6.74,3.44,10.0,3.78,4.76
+141,Outlast (Edition 3),"Psychological Horror,Dark,Gore,Singleplayer,Fast-Paced",5.8,96,18,9.24,4.28,4.28,1.31,10.0,6.68,4.15
+142,This War of Mine (Edition 3),"Survival,Dark,Tragedy,Management,Singleplayer",20.5,92,18,4.51,4.58,5.95,1.52,9.81,1.81,6.79
+143,"Papers, Please (Edition 3)","Simulation,Dark,Tragedy,Puzzle,Singleplayer,Short",6.9,96,16,4.75,4.28,4.5,1.33,10.0,1.87,1.0
+144,Rust (Edition 3),"Survival,Open World,PvP,Crafting,Competitive,Multiplayer",263.2,85,18,4.41,4.32,9.59,8.79,3.64,4.28,10.0
+145,Cyberpunk 2077 (Edition 3),"RPG,Open World,Neon,Dark,Fast-Paced,Singleplayer",56.9,82,18,9.54,4.17,7.39,1.45,6.9,6.61,9.28
+146,Hades (Edition 3),"Roguelike,Fast-Paced,High-Reflex,Singleplayer,Action",35.0,99,12,6.78,4.65,6.7,1.25,4.28,10.0,4.48
+147,Cuphead (Edition 3),"Platformer,Fast-Paced,High-Reflex,Co-op,Singleplayer",14.4,95,10,7.06,4.63,5.46,3.53,4.29,9.79,4.52
+148,Rocket League (Edition 3),"Sports,Competitive,PvP,Fast-Paced,Multiplayer,High-Reflex",166.6,89,7,7.28,4.79,8.93,8.93,4.27,9.76,4.64
+149,Overcooked! 2 (Edition 3),"Co-op,Fast-Paced,Comedy,Wholesome,Multiplayer,Short",11.4,92,7,6.73,3.0,5.15,3.72,1.0,7.06,2.2
+150,Terraria (Edition 3),"Sandbox,Crafting,Open World,Co-op,Singleplayer,Pixel Graphics",85.5,96,12,4.75,4.77,7.97,3.5,3.61,3.83,10.0
+151,Unpacking (Edition 4),"Casual,Puzzle,Relaxing,Minimalist,Singleplayer,Wholesome,Short",4.6,94,7,1.0,1.0,4.0,1.21,1.0,1.5,1.0
+152,Dorfromantik (Edition 4),"Strategy,Puzzle,Relaxing,Minimalist,Singleplayer,Wholesome,Turn-Based",10.3,95,7,1.0,1.0,5.02,1.58,1.0,1.0,2.85
+153,A Short Hike (Edition 4),"Adventure,Exploration,Wholesome,Cute,Singleplayer,Comedy,Short",2.6,98,7,4.86,1.0,3.36,1.66,1.0,3.98,2.15
+154,Stardew Valley (Edition 4),"Farming Sim,Relaxing,Wholesome,Co-op,Singleplayer,Pixel Graphics",56.7,97,10,3.0,1.28,7.38,3.78,1.0,3.7,4.71
+155,PowerWash Simulator (Edition 4),"Simulation,Relaxing,Singleplayer,Co-op,Minimalist,Wholesome",30.0,97,7,1.16,1.0,6.48,3.69,1.0,3.6,4.23
+156,Townscaper (Edition 4),"Casual,City Builder,Relaxing,Minimalist,Singleplayer,Wholesome",3.0,96,7,1.0,1.0,3.51,1.3,1.0,4.15,4.28
+157,Abzu (Edition 4),"Adventure,Exploration,Atmospheric,Relaxing,Singleplayer,Short",2.2,94,7,2.82,2.52,3.19,1.77,1.52,3.95,2.85
+158,Journey (Edition 4),"Adventure,Atmospheric,Exploration,Singleplayer,Wholesome,Short",2.0,95,7,4.87,2.91,3.09,1.47,1.65,3.86,2.68
+159,Coffee Talk (Edition 4),"Visual Novel,Relaxing,Wholesome,Singleplayer,Atmospheric,Short",4.8,95,10,1.0,1.02,4.05,1.42,1.0,1.78,2.87
+160,Spiritfarer (Edition 4),"Management,Wholesome,Emotional,Co-op,Singleplayer,Relaxing",25.4,94,10,2.37,1.0,6.25,3.47,1.0,1.41,4.74
+161,Slime Rancher (Edition 4),"Adventure,Cute,Wholesome,Singleplayer,Exploration,Relaxing",20.6,98,7,3.07,1.0,5.96,1.48,1.0,4.08,4.59
+162,Untitled Goose Game (Edition 4),"Comedy,Puzzle,Wholesome,Co-op,Singleplayer,Short",3.2,93,7,4.26,2.69,3.58,3.24,1.0,1.62,1.0
+163,Mini Motorways (Edition 4),"Strategy,Puzzle,Minimalist,Singleplayer,Short",13.2,97,7,2.42,4.47,5.35,1.61,3.92,2.18,1.0
+164,Alba: A Wildlife Adventure (Edition 4),"Adventure,Wholesome,Cute,Exploration,Singleplayer,Short",3.1,95,7,4.79,1.12,3.55,1.22,1.0,3.68,2.29
+165,Gris (Edition 4),"Platformer,Atmospheric,Emotional,Minimalist,Singleplayer,Short",4.6,97,10,2.86,4.55,4.0,1.21,3.86,4.01,2.17
+166,Portal 2 (Edition 4),"Puzzle,Comedy,Co-op,Singleplayer,Sci-Fi,Linear",9.6,97,10,4.76,4.39,4.92,3.39,2.18,1.56,1.0
+167,The Talos Principle (Edition 4),"Puzzle,Philosophical,Atmospheric,Singleplayer,First-Person",19.7,94,10,4.23,4.18,5.89,1.58,4.17,1.43,2.85
+168,Baba Is You (Edition 4),"Puzzle,Turn-Based,Minimalist,Singleplayer,Complex",17.3,96,7,1.07,7.0,5.72,1.63,4.24,1.0,2.75
+169,Return of the Obra Dinn (Edition 4),"Detective,Puzzle,Mystery,Singleplayer,Minimalist",7.9,97,16,2.74,6.78,4.67,1.67,3.98,1.43,2.23
+170,Firewatch (Edition 4),"Adventure,Narrative,Atmospheric,Singleplayer,Short",4.4,88,16,4.15,4.3,3.95,1.3,4.3,3.78,2.88
+171,Outer Wilds (Edition 4),"Exploration,Mystery,Atmospheric,Space,Singleplayer",17.1,97,10,4.73,4.63,5.7,1.5,4.04,4.18,4.28
+172,It Takes Two (Edition 4),"Co-op,Adventure,Platformer,Comedy,Wholesome",14.9,94,12,4.49,2.37,5.51,3.44,1.0,3.93,4.26
+173,Civilization VI (Edition 4),"Grand Strategy,Turn-Based,Complex,Singleplayer,Multiplayer",104.7,84,12,2.99,9.08,8.26,1.65,3.94,1.68,4.4
+174,Slay the Spire (Edition 4),"Card Battler,Roguelike,Turn-Based,Singleplayer,Complex",63.0,96,10,2.99,6.76,7.53,1.46,4.18,1.79,4.8
+175,Into the Breach (Edition 4),"Strategy,Turn-Based,Minimalist,Singleplayer,Short",17.9,93,10,1.29,4.33,5.76,1.42,3.91,1.77,2.77
+176,Disco Elysium (Edition 4),"RPG,Narrative,Detective,Dark,Complex,Singleplayer",29.5,93,18,4.67,9.23,6.46,1.31,6.79,4.38,6.54
+177,Life is Strange (Edition 4),"Narrative,Emotional,Atmospheric,Singleplayer,Drama",15.5,98,16,4.45,4.18,5.56,1.44,4.07,4.06,4.63
+178,Cities: Skylines (Edition 4),"City Builder,Simulation,Sandbox,Singleplayer,Complex",65.9,91,7,4.41,7.08,7.59,1.35,4.13,3.86,7.02
+179,Subnautica (Edition 4),"Survival,Exploration,Open World,Crafting,Atmospheric,Singleplayer",33.8,98,10,4.29,4.29,6.65,1.73,3.95,3.86,10.0
+180,Dave the Diver (Edition 4),"Adventure,Management,Comedy,Wholesome,Singleplayer",26.3,95,10,4.44,2.5,6.29,1.57,1.0,1.53,4.23
+181,Counter-Strike 2 (Edition 4),"FPS,Competitive,PvP,Fast-Paced,Multiplayer,High-Reflex",215.3,89,18,9.39,4.53,9.3,8.97,4.16,10.0,4.79
+182,Valorant (Edition 4),"FPS,Competitive,PvP,Fast-Paced,Neon,Multiplayer,High-Reflex",223.8,85,16,10.0,4.32,9.35,8.53,4.02,10.0,4.13
+183,Apex Legends (Edition 4),"Battle Royale,FPS,Competitive,PvP,Fast-Paced,High-Reflex",159.6,82,16,10.0,4.35,8.86,8.8,3.63,10.0,4.89
+184,Dota 2 (Edition 4),"MOBA,Competitive,PvP,Complex,Multiplayer,High-Reflex",455.8,82,16,4.11,8.76,10.0,9.08,4.06,6.6,4.52
+185,Elden Ring (Edition 4),"Souls-like,Dark,Open World,Complex,High-Reflex,Singleplayer",81.0,94,18,4.2,8.61,7.89,1.29,7.35,6.99,6.53
+186,Sekiro: Shadows Die Twice (Edition 4),"Souls-like,Fast-Paced,High-Reflex,Dark,Singleplayer",38.1,97,18,6.96,6.99,6.82,1.31,7.15,9.87,4.86
+187,DOOM Eternal (Edition 4),"FPS,Fast-Paced,Gore,Neon,High-Reflex,Singleplayer",19.0,90,18,10.0,4.76,5.84,1.72,7.21,10.0,4.74
+188,Hotline Miami (Edition 4),"Fast-Paced,Neon,Gore,High-Reflex,Dark,Singleplayer,Short",6.8,95,18,10.0,4.63,4.48,1.44,10.0,9.29,2.63
+189,Geometry Dash (Edition 4),"Rhythm,Fast-Paced,Neon,High-Reflex,Singleplayer",34.5,91,7,9.79,4.89,6.68,1.65,3.67,10.0,4.19
+190,Phasmophobia (Edition 4),"Psychological Horror,Dark,Co-op,Multiplayer,Atmospheric",36.6,97,16,4.63,4.75,6.76,3.66,10.0,3.95,4.75
+191,Outlast (Edition 4),"Psychological Horror,Dark,Gore,Singleplayer,Fast-Paced",5.8,94,18,9.36,4.6,4.28,1.57,10.0,6.7,4.54
+192,This War of Mine (Edition 4),"Survival,Dark,Tragedy,Management,Singleplayer",18.5,92,18,4.46,4.11,5.81,1.55,9.73,1.91,7.01
+193,"Papers, Please (Edition 4)","Simulation,Dark,Tragedy,Puzzle,Singleplayer,Short",6.0,98,16,4.79,4.52,4.32,1.49,9.62,1.67,1.0
+194,Rust (Edition 4),"Survival,Open World,PvP,Crafting,Competitive,Multiplayer",290.9,89,18,4.3,4.48,9.73,8.74,4.04,4.2,10.0
+195,Cyberpunk 2077 (Edition 4),"RPG,Open World,Neon,Dark,Fast-Paced,Singleplayer",60.4,86,18,9.26,4.11,7.47,1.59,7.32,6.59,9.44
+196,Hades (Edition 4),"Roguelike,Fast-Paced,High-Reflex,Singleplayer,Action",30.4,99,12,6.98,4.26,6.5,1.3,4.09,10.0,4.64
+197,Cuphead (Edition 4),"Platformer,Fast-Paced,High-Reflex,Co-op,Singleplayer",15.8,97,10,7.03,4.35,5.59,3.57,4.17,9.42,4.43
+198,Rocket League (Edition 4),"Sports,Competitive,PvP,Fast-Paced,Multiplayer,High-Reflex",133.0,88,7,6.7,4.79,8.6,8.98,3.75,9.44,4.73
+199,Overcooked! 2 (Edition 4),"Co-op,Fast-Paced,Comedy,Wholesome,Multiplayer,Short",10.0,92,7,6.94,2.37,4.98,3.69,1.0,6.82,2.19
+200,Terraria (Edition 4),"Sandbox,Crafting,Open World,Co-op,Singleplayer,Pixel Graphics",76.6,99,12,4.81,4.28,7.81,3.33,4.09,3.93,10.0
+201,Unpacking (Edition 5),"Casual,Puzzle,Relaxing,Minimalist,Singleplayer,Wholesome,Short",4.5,94,7,1.0,1.0,3.97,1.36,1.0,1.74,1.0
+202,Dorfromantik (Edition 5),"Strategy,Puzzle,Relaxing,Minimalist,Singleplayer,Wholesome,Turn-Based",10.5,98,7,1.0,1.0,5.04,1.29,1.0,1.0,2.48
+203,A Short Hike (Edition 5),"Adventure,Exploration,Wholesome,Cute,Singleplayer,Comedy,Short",2.5,99,7,4.61,1.0,3.32,1.53,1.0,3.91,2.58
+204,Stardew Valley (Edition 5),"Farming Sim,Relaxing,Wholesome,Co-op,Singleplayer,Pixel Graphics",64.9,97,10,2.52,1.0,7.57,3.61,1.0,3.96,4.68
+205,PowerWash Simulator (Edition 5),"Simulation,Relaxing,Singleplayer,Co-op,Minimalist,Wholesome",29.9,98,7,1.15,1.0,6.47,3.4,1.0,4.22,4.31
+206,Townscaper (Edition 5),"Casual,City Builder,Relaxing,Minimalist,Singleplayer,Wholesome",3.1,96,7,1.0,1.0,3.55,1.34,1.0,3.66,4.52
+207,Abzu (Edition 5),"Adventure,Exploration,Atmospheric,Relaxing,Singleplayer,Short",2.2,95,7,2.36,2.81,3.19,1.36,1.87,4.14,2.28
+208,Journey (Edition 5),"Adventure,Atmospheric,Exploration,Singleplayer,Wholesome,Short",2.0,94,7,4.9,2.83,3.09,1.53,1.98,3.97,2.15
+209,Coffee Talk (Edition 5),"Visual Novel,Relaxing,Wholesome,Singleplayer,Atmospheric,Short",4.6,96,10,1.27,1.01,4.0,1.65,1.0,1.73,2.44
+210,Spiritfarer (Edition 5),"Management,Wholesome,Emotional,Co-op,Singleplayer,Relaxing",30.7,97,10,2.58,1.03,6.51,3.68,1.0,1.59,4.42
+211,Slime Rancher (Edition 5),"Adventure,Cute,Wholesome,Singleplayer,Exploration,Relaxing",19.7,99,7,2.89,1.0,5.89,1.35,1.0,3.67,4.31
+212,Untitled Goose Game (Edition 5),"Comedy,Puzzle,Wholesome,Co-op,Singleplayer,Short",3.8,93,7,4.59,2.71,3.77,3.3,1.0,1.49,1.0
+213,Mini Motorways (Edition 5),"Strategy,Puzzle,Minimalist,Singleplayer,Short",13.3,93,7,2.37,4.85,5.36,1.53,3.84,1.72,1.0
+214,Alba: A Wildlife Adventure (Edition 5),"Adventure,Wholesome,Cute,Exploration,Singleplayer,Short",3.1,97,7,4.73,1.0,3.55,1.54,1.0,4.0,2.42
+215,Gris (Edition 5),"Platformer,Atmospheric,Emotional,Minimalist,Singleplayer,Short",4.0,98,10,2.6,4.8,3.83,1.72,4.24,4.23,2.34
+216,Portal 2 (Edition 5),"Puzzle,Comedy,Co-op,Singleplayer,Sci-Fi,Linear",8.7,99,10,4.12,4.22,4.79,3.33,2.17,1.86,1.0
+217,The Talos Principle (Edition 5),"Puzzle,Philosophical,Atmospheric,Singleplayer,First-Person",18.4,97,10,4.79,4.84,5.8,1.49,4.09,2.01,2.24
+218,Baba Is You (Edition 5),"Puzzle,Turn-Based,Minimalist,Singleplayer,Complex",20.0,96,7,1.16,6.83,5.91,1.27,3.98,1.0,2.29
+219,Return of the Obra Dinn (Edition 5),"Detective,Puzzle,Mystery,Singleplayer,Minimalist",7.9,97,16,3.07,6.65,4.67,1.39,4.0,1.75,2.18
+220,Firewatch (Edition 5),"Adventure,Narrative,Atmospheric,Singleplayer,Short",4.7,91,16,4.11,4.58,4.02,1.42,3.91,4.05,2.25
+221,Outer Wilds (Edition 5),"Exploration,Mystery,Atmospheric,Space,Singleplayer",16.4,95,10,4.7,4.6,5.64,1.38,3.94,3.74,4.16
+222,It Takes Two (Edition 5),"Co-op,Adventure,Platformer,Comedy,Wholesome",14.1,96,12,4.24,2.85,5.44,3.57,1.0,3.78,4.29
+223,Civilization VI (Edition 5),"Grand Strategy,Turn-Based,Complex,Singleplayer,Multiplayer",87.0,88,12,2.8,8.92,7.99,1.46,3.7,2.11,4.46
+224,Slay the Spire (Edition 5),"Card Battler,Roguelike,Turn-Based,Singleplayer,Complex",50.0,97,10,2.63,6.96,7.2,1.64,4.22,1.41,4.43
+225,Into the Breach (Edition 5),"Strategy,Turn-Based,Minimalist,Singleplayer,Short",15.9,96,10,1.11,4.21,5.6,1.52,3.77,1.41,2.29
+226,Disco Elysium (Edition 5),"RPG,Narrative,Detective,Dark,Complex,Singleplayer",36.6,93,18,4.15,8.53,6.76,1.42,6.81,4.12,6.8
+227,Life is Strange (Edition 5),"Narrative,Emotional,Atmospheric,Singleplayer,Drama",13.0,98,16,4.49,4.22,5.33,1.39,4.19,3.98,4.4
+228,Cities: Skylines (Edition 5),"City Builder,Simulation,Sandbox,Singleplayer,Complex",72.6,92,7,4.73,7.01,7.73,1.77,4.23,3.85,6.95
+229,Subnautica (Edition 5),"Survival,Exploration,Open World,Crafting,Atmospheric,Singleplayer",37.3,98,10,4.32,4.84,6.79,1.35,4.22,4.26,10.0
+230,Dave the Diver (Edition 5),"Adventure,Management,Comedy,Wholesome,Singleplayer",24.1,95,10,4.59,2.35,6.17,1.51,1.0,1.99,4.51
+231,Counter-Strike 2 (Edition 5),"FPS,Competitive,PvP,Fast-Paced,Multiplayer,High-Reflex",263.5,89,18,9.13,4.7,9.59,8.9,4.24,10.0,4.13
+232,Valorant (Edition 5),"FPS,Competitive,PvP,Fast-Paced,Neon,Multiplayer,High-Reflex",220.6,84,16,10.0,4.89,9.33,9.08,4.35,10.0,4.38
+233,Apex Legends (Edition 5),"Battle Royale,FPS,Competitive,PvP,Fast-Paced,High-Reflex",175.3,82,16,10.0,4.71,9.0,8.66,3.62,10.0,4.87
+234,Dota 2 (Edition 5),"MOBA,Competitive,PvP,Complex,Multiplayer,High-Reflex",375.5,80,16,4.88,9.03,10.0,8.51,3.8,6.61,4.16
+235,Elden Ring (Edition 5),"Souls-like,Dark,Open World,Complex,High-Reflex,Singleplayer",96.7,92,18,4.36,8.6,8.14,1.48,6.69,6.79,7.14
+236,Sekiro: Shadows Die Twice (Edition 5),"Souls-like,Fast-Paced,High-Reflex,Dark,Singleplayer",42.3,96,18,6.73,6.33,6.96,1.27,7.08,9.28,4.4
+237,DOOM Eternal (Edition 5),"FPS,Fast-Paced,Gore,Neon,High-Reflex,Singleplayer",18.3,90,18,10.0,4.85,5.79,1.34,6.7,10.0,4.81
+238,Hotline Miami (Edition 5),"Fast-Paced,Neon,Gore,High-Reflex,Dark,Singleplayer,Short",6.3,97,18,10.0,4.35,4.38,1.73,9.81,9.64,2.61
+239,Geometry Dash (Edition 5),"Rhythm,Fast-Paced,Neon,High-Reflex,Singleplayer",27.5,94,7,9.14,4.36,6.36,1.65,3.82,10.0,4.68
+240,Phasmophobia (Edition 5),"Psychological Horror,Dark,Co-op,Multiplayer,Atmospheric",30.9,98,16,4.68,4.75,6.52,3.33,10.0,4.27,4.69
+241,Outlast (Edition 5),"Psychological Horror,Dark,Gore,Singleplayer,Fast-Paced",6.6,98,18,9.69,4.59,4.44,1.26,10.0,6.48,4.56
+242,This War of Mine (Edition 5),"Survival,Dark,Tragedy,Management,Singleplayer",20.0,96,18,4.23,4.47,5.91,1.21,9.8,1.98,7.19
+243,"Papers, Please (Edition 5)","Simulation,Dark,Tragedy,Puzzle,Singleplayer,Short",5.3,95,16,4.63,4.35,4.17,1.65,10.0,1.89,1.0
+244,Rust (Edition 5),"Survival,Open World,PvP,Crafting,Competitive,Multiplayer",288.8,85,18,4.54,4.1,9.72,8.96,3.63,4.2,10.0
+245,Cyberpunk 2077 (Edition 5),"RPG,Open World,Neon,Dark,Fast-Paced,Singleplayer",68.2,82,18,9.64,4.71,7.64,1.71,6.98,6.8,8.8
+246,Hades (Edition 5),"Roguelike,Fast-Paced,High-Reflex,Singleplayer,Action",33.8,99,12,7.18,4.81,6.65,1.56,3.91,10.0,4.66
+247,Cuphead (Edition 5),"Platformer,Fast-Paced,High-Reflex,Co-op,Singleplayer",11.9,97,10,6.75,4.41,5.21,3.44,4.3,9.61,4.68
+248,Rocket League (Edition 5),"Sports,Competitive,PvP,Fast-Paced,Multiplayer,High-Reflex",132.2,87,7,7.05,4.55,8.59,8.86,4.14,9.84,4.32
+249,Overcooked! 2 (Edition 5),"Co-op,Fast-Paced,Comedy,Wholesome,Multiplayer,Short",12.1,89,7,7.11,2.42,5.23,3.62,1.0,7.19,2.27
+250,Terraria (Edition 5),"Sandbox,Crafting,Open World,Co-op,Singleplayer,Pixel Graphics",98.8,97,12,4.45,4.22,8.17,3.4,3.95,3.67,10.0

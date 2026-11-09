@@ -1,0 +1,501 @@
+user_id,age,gender,employment_status,eye_strain_sensitivity,primary_mental_state,daily_free_time_mins
+1,41,Female,Full-Time Employed,5.4,Relaxed,31
+2,24,Male,Full-Time Employed,2.8,High Stress,62
+3,46,Female,Freelancer,3.9,Overthinking,80
+4,30,Female,Unemployed,6.0,High Stress,94
+5,19,Female,Student,5.6,Relaxed,68
+6,17,Female,Student,5.9,High Stress,125
+7,33,Male,Full-Time Employed,4.5,Overthinking,31
+8,40,Male,Student,6.3,High Stress,133
+9,28,Male,Unemployed,5.2,Overthinking,96
+10,19,Male,Part-Time,5.8,Overthinking,59
+11,27,Male,Unemployed,7.6,Low Mood,90
+12,24,Female,Full-Time Employed,7.2,Overthinking,20
+13,52,Female,Retired,6.2,Relaxed,109
+14,22,Female,Freelancer,7.3,Overthinking,88
+15,39,Female,Full-Time Employed,7.8,Overthinking,49
+16,29,Non-Binary,Unemployed,6.3,Relaxed,85
+17,18,Female,Student,6.0,Relaxed,81
+18,23,Female,Freelancer,6.3,Relaxed,70
+19,16,Female,Student,4.4,Overthinking,115
+20,26,Male,Full-Time Employed,3.3,Overthinking,40
+21,43,Male,Freelancer,7.8,High Stress,87
+22,19,Male,Student,5.5,High Stress,90
+23,30,Female,Full-Time Employed,6.3,Relaxed,28
+24,32,Female,Full-Time Employed,3.7,Overthinking,37
+25,55,Male,Retired,5.4,High Stress,100
+26,48,Male,Full-Time Employed,7.6,Relaxed,20
+27,39,Female,Full-Time Employed,10.0,High Stress,22
+28,18,Male,Part-Time,2.7,Relaxed,129
+29,42,Male,Student,5.5,Overthinking,85
+30,50,Female,Full-Time Employed,9.2,High Stress,31
+31,33,Male,Freelancer,3.7,Relaxed,61
+32,34,Male,Student,7.6,High Stress,116
+33,23,Female,Student,1.9,High Stress,68
+34,18,Female,Student,2.1,Overthinking,94
+35,49,Female,Full-Time Employed,9.6,Relaxed,20
+36,19,Male,Student,6.3,Overthinking,115
+37,39,Male,Full-Time Employed,9.6,Low Mood,74
+38,17,Male,Student,8.1,High Stress,107
+39,52,Female,Full-Time Employed,9.8,Overthinking,20
+40,52,Female,Retired,3.8,Overthinking,115
+41,48,Male,Full-Time Employed,6.6,Low Mood,24
+42,14,Female,Student,1.0,High Stress,65
+43,37,Male,Student,5.8,Low Mood,85
+44,49,Male,Full-Time Employed,8.4,Relaxed,34
+45,19,Male,Student,6.5,Overthinking,82
+46,54,Male,Retired,6.0,Low Mood,126
+47,44,Female,Full-Time Employed,6.0,Overthinking,95
+48,33,Male,Freelancer,5.8,Low Mood,60
+49,37,Male,Freelancer,5.9,High Stress,77
+50,38,Female,Full-Time Employed,5.3,Relaxed,48
+51,49,Male,Student,3.9,Overthinking,85
+52,34,Female,Full-Time Employed,5.7,Overthinking,54
+53,43,Female,Full-Time Employed,8.0,High Stress,67
+54,37,Male,Full-Time Employed,6.4,Relaxed,63
+55,55,Male,Full-Time Employed,3.9,Relaxed,60
+56,43,Male,Unemployed,2.4,Relaxed,136
+57,35,Male,Full-Time Employed,7.2,Low Mood,20
+58,41,Male,Full-Time Employed,7.0,Overthinking,82
+59,20,Female,Student,5.7,Overthinking,84
+60,48,Female,Full-Time Employed,9.0,Relaxed,64
+61,41,Male,Full-Time Employed,7.1,Relaxed,20
+62,27,Female,Full-Time Employed,4.5,High Stress,22
+63,23,Female,Freelancer,5.3,Overthinking,111
+64,29,Female,Full-Time Employed,6.0,High Stress,20
+65,29,Female,Full-Time Employed,7.7,Overthinking,69
+66,44,Female,Full-Time Employed,9.9,Low Mood,76
+67,55,Male,Full-Time Employed,5.6,Relaxed,49
+68,38,Male,Student,8.5,Low Mood,98
+69,26,Non-Binary,Full-Time Employed,5.5,High Stress,24
+70,19,Male,Student,4.3,Relaxed,111
+71,22,Non-Binary,Full-Time Employed,8.7,Low Mood,53
+72,49,Female,Freelancer,8.9,High Stress,71
+73,33,Male,Freelancer,4.9,Relaxed,85
+74,31,Male,Full-Time Employed,4.7,High Stress,41
+75,34,Male,Freelancer,6.9,Relaxed,85
+76,17,Female,Student,5.3,High Stress,60
+77,46,Male,Student,5.5,Overthinking,112
+78,40,Male,Student,8.4,High Stress,88
+79,20,Male,Student,4.7,High Stress,95
+80,19,Male,Student,3.5,Low Mood,80
+81,28,Male,Full-Time Employed,7.1,High Stress,56
+82,31,Male,Full-Time Employed,4.1,High Stress,49
+83,45,Female,Unemployed,5.3,Overthinking,125
+84,24,Male,Full-Time Employed,7.9,High Stress,57
+85,33,Male,Full-Time Employed,6.7,High Stress,39
+86,37,Male,Freelancer,6.3,Low Mood,76
+87,28,Male,Full-Time Employed,5.2,Relaxed,66
+88,20,Non-Binary,Student,4.4,Relaxed,87
+89,34,Female,Full-Time Employed,4.5,Overthinking,40
+90,55,Male,Full-Time Employed,8.1,Relaxed,40
+91,39,Female,Freelancer,3.9,Relaxed,84
+92,27,Male,Full-Time Employed,4.0,High Stress,41
+93,50,Male,Full-Time Employed,6.9,Low Mood,93
+94,34,Non-Binary,Full-Time Employed,8.3,High Stress,20
+95,31,Female,Full-Time Employed,4.5,High Stress,24
+96,18,Non-Binary,Student,6.6,Overthinking,129
+97,16,Male,Student,5.8,Low Mood,85
+98,36,Female,Full-Time Employed,2.8,Relaxed,33
+99,39,Male,Unemployed,6.2,High Stress,120
+100,50,Male,Freelancer,4.5,Low Mood,59
+101,37,Female,Full-Time Employed,6.6,Overthinking,65
+102,32,Male,Full-Time Employed,5.7,Relaxed,46
+103,38,Female,Freelancer,9.1,Overthinking,106
+104,34,Female,Freelancer,6.7,Relaxed,106
+105,25,Male,Full-Time Employed,5.4,Relaxed,29
+106,54,Male,Freelancer,7.0,Relaxed,121
+107,46,Female,Full-Time Employed,8.7,Low Mood,31
+108,17,Male,Student,4.8,Relaxed,105
+109,55,Female,Full-Time Employed,10.0,Overthinking,75
+110,20,Female,Student,5.0,Low Mood,129
+111,35,Male,Student,6.4,Low Mood,88
+112,46,Female,Full-Time Employed,6.9,Relaxed,56
+113,30,Non-Binary,Full-Time Employed,5.0,Low Mood,36
+114,37,Male,Student,5.0,Overthinking,157
+115,47,Female,Full-Time Employed,7.0,Overthinking,64
+116,41,Male,Full-Time Employed,8.9,Low Mood,47
+117,54,Female,Full-Time Employed,9.9,Overthinking,52
+118,52,Female,Full-Time Employed,10.0,High Stress,55
+119,35,Male,Full-Time Employed,5.2,Low Mood,55
+120,30,Male,Freelancer,6.8,Low Mood,89
+121,47,Female,Full-Time Employed,9.3,Overthinking,35
+122,19,Male,Student,3.3,Overthinking,91
+123,19,Female,Student,5.1,High Stress,66
+124,47,Male,Freelancer,3.2,Overthinking,112
+125,14,Female,Student,5.8,High Stress,74
+126,23,Female,Full-Time Employed,8.3,High Stress,20
+127,34,Female,Full-Time Employed,4.0,High Stress,44
+128,18,Male,Student,3.7,High Stress,91
+129,15,Female,Student,3.5,Overthinking,101
+130,35,Female,Full-Time Employed,4.8,Low Mood,30
+131,15,Male,Part-Time,4.9,Low Mood,85
+132,23,Male,Full-Time Employed,6.9,Relaxed,62
+133,47,Male,Freelancer,7.6,Overthinking,110
+134,29,Female,Full-Time Employed,7.9,Relaxed,59
+135,52,Female,Retired,9.9,Low Mood,95
+136,35,Male,Full-Time Employed,6.7,High Stress,49
+137,25,Female,Student,4.8,Relaxed,100
+138,37,Male,Full-Time Employed,9.9,Relaxed,28
+139,53,Male,Retired,6.8,Relaxed,131
+140,51,Non-Binary,Retired,5.7,Overthinking,128
+141,23,Female,Freelancer,7.8,Relaxed,114
+142,48,Male,Full-Time Employed,6.8,Overthinking,34
+143,45,Male,Full-Time Employed,8.3,Low Mood,58
+144,20,Female,Student,4.1,Low Mood,119
+145,34,Male,Full-Time Employed,7.6,High Stress,20
+146,33,Male,Full-Time Employed,7.7,High Stress,87
+147,39,Male,Full-Time Employed,9.4,Low Mood,20
+148,17,Female,Part-Time,4.4,Relaxed,112
+149,35,Female,Freelancer,6.1,Overthinking,131
+150,28,Male,Unemployed,6.2,Low Mood,92
+151,53,Female,Full-Time Employed,7.5,Relaxed,41
+152,34,Female,Student,4.4,Overthinking,111
+153,28,Male,Student,7.3,Relaxed,141
+154,35,Female,Freelancer,6.0,Low Mood,87
+155,41,Female,Freelancer,3.4,High Stress,75
+156,27,Male,Full-Time Employed,4.1,Overthinking,34
+157,40,Male,Student,5.5,High Stress,56
+158,54,Female,Retired,5.8,Relaxed,117
+159,53,Female,Full-Time Employed,5.1,High Stress,32
+160,41,Female,Full-Time Employed,4.9,Overthinking,39
+161,39,Male,Unemployed,8.9,Low Mood,117
+162,15,Non-Binary,Part-Time,6.6,Relaxed,85
+163,38,Male,Unemployed,8.3,Overthinking,113
+164,16,Male,Student,7.7,High Stress,69
+165,21,Female,Student,4.5,High Stress,118
+166,46,Male,Full-Time Employed,8.2,Relaxed,53
+167,55,Male,Full-Time Employed,3.7,Overthinking,42
+168,48,Male,Full-Time Employed,8.1,Relaxed,48
+169,19,Male,Student,3.6,Overthinking,62
+170,52,Male,Full-Time Employed,6.5,Relaxed,47
+171,36,Non-Binary,Full-Time Employed,7.1,Low Mood,41
+172,38,Male,Unemployed,5.9,Overthinking,63
+173,32,Female,Full-Time Employed,5.4,High Stress,28
+174,18,Female,Part-Time,4.0,High Stress,91
+175,24,Female,Full-Time Employed,4.3,Overthinking,29
+176,25,Male,Full-Time Employed,3.7,Low Mood,20
+177,23,Female,Full-Time Employed,3.5,High Stress,71
+178,21,Female,Student,6.5,Overthinking,91
+179,37,Female,Full-Time Employed,6.2,Low Mood,20
+180,41,Female,Freelancer,8.6,Relaxed,148
+181,54,Female,Full-Time Employed,8.7,High Stress,76
+182,49,Male,Full-Time Employed,7.9,Relaxed,36
+183,50,Female,Full-Time Employed,5.3,High Stress,23
+184,34,Female,Unemployed,3.7,Overthinking,105
+185,21,Female,Student,5.2,High Stress,100
+186,22,Non-Binary,Freelancer,5.1,Low Mood,108
+187,28,Male,Full-Time Employed,5.4,Overthinking,24
+188,53,Non-Binary,Retired,7.3,Relaxed,122
+189,31,Male,Freelancer,6.0,Relaxed,83
+190,55,Male,Retired,6.9,High Stress,112
+191,33,Male,Unemployed,7.6,Overthinking,75
+192,19,Male,Student,8.1,High Stress,161
+193,25,Female,Unemployed,5.2,Low Mood,112
+194,15,Male,Part-Time,4.2,Low Mood,167
+195,20,Male,Student,8.3,High Stress,115
+196,29,Female,Full-Time Employed,6.5,Overthinking,30
+197,16,Female,Part-Time,6.2,Relaxed,115
+198,16,Female,Student,3.4,Overthinking,117
+199,40,Female,Full-Time Employed,5.4,Overthinking,54
+200,53,Female,Freelancer,6.1,Relaxed,110
+201,51,Male,Retired,6.8,Overthinking,114
+202,46,Male,Full-Time Employed,7.5,Overthinking,20
+203,41,Female,Full-Time Employed,6.1,Low Mood,20
+204,14,Male,Student,5.5,Relaxed,75
+205,21,Female,Student,5.7,Overthinking,98
+206,50,Male,Full-Time Employed,10.0,Overthinking,39
+207,45,Male,Full-Time Employed,5.7,High Stress,20
+208,50,Female,Full-Time Employed,8.6,High Stress,64
+209,17,Female,Student,4.8,Overthinking,102
+210,43,Female,Freelancer,5.2,Low Mood,99
+211,19,Female,Student,2.9,Relaxed,88
+212,32,Male,Freelancer,5.9,Low Mood,85
+213,45,Male,Full-Time Employed,6.5,Low Mood,23
+214,22,Female,Full-Time Employed,6.1,Relaxed,68
+215,25,Female,Full-Time Employed,3.8,Relaxed,27
+216,24,Male,Unemployed,5.5,Overthinking,100
+217,29,Female,Full-Time Employed,6.4,High Stress,86
+218,14,Male,Student,6.1,Overthinking,86
+219,34,Male,Freelancer,8.3,High Stress,119
+220,43,Male,Full-Time Employed,7.6,High Stress,59
+221,26,Female,Full-Time Employed,5.0,Overthinking,52
+222,47,Female,Full-Time Employed,7.5,Overthinking,55
+223,17,Male,Student,4.4,Overthinking,92
+224,41,Female,Freelancer,6.7,Overthinking,95
+225,51,Male,Full-Time Employed,4.5,Low Mood,31
+226,44,Male,Full-Time Employed,8.9,Relaxed,46
+227,40,Male,Full-Time Employed,5.4,Overthinking,30
+228,18,Male,Student,3.4,Relaxed,120
+229,38,Male,Full-Time Employed,6.7,Overthinking,20
+230,16,Female,Student,4.4,Overthinking,107
+231,46,Female,Full-Time Employed,7.7,High Stress,53
+232,17,Female,Student,5.1,Overthinking,101
+233,38,Male,Full-Time Employed,8.2,Low Mood,70
+234,33,Male,Full-Time Employed,6.1,Overthinking,37
+235,47,Male,Full-Time Employed,7.4,Overthinking,51
+236,39,Male,Full-Time Employed,9.6,High Stress,20
+237,18,Female,Student,3.5,High Stress,84
+238,48,Male,Unemployed,4.6,Low Mood,116
+239,41,Female,Full-Time Employed,6.9,Relaxed,20
+240,42,Female,Freelancer,3.3,Relaxed,98
+241,22,Male,Freelancer,3.4,High Stress,78
+242,51,Female,Full-Time Employed,5.2,High Stress,42
+243,19,Female,Student,1.0,Overthinking,79
+244,32,Female,Freelancer,4.3,Relaxed,63
+245,24,Female,Full-Time Employed,5.4,High Stress,54
+246,15,Male,Part-Time,3.6,High Stress,93
+247,22,Male,Full-Time Employed,3.7,Low Mood,60
+248,34,Male,Unemployed,1.8,Overthinking,114
+249,37,Male,Full-Time Employed,5.8,Relaxed,75
+250,47,Female,Freelancer,5.8,Overthinking,98
+251,35,Male,Full-Time Employed,3.6,Overthinking,76
+252,16,Female,Student,4.0,Overthinking,70
+253,25,Female,Full-Time Employed,5.7,Low Mood,67
+254,41,Male,Freelancer,6.3,Overthinking,106
+255,43,Male,Full-Time Employed,7.8,Relaxed,50
+256,39,Female,Freelancer,7.3,Relaxed,106
+257,34,Female,Full-Time Employed,5.1,Low Mood,20
+258,41,Female,Student,4.8,Relaxed,65
+259,39,Male,Full-Time Employed,4.7,High Stress,87
+260,46,Male,Student,5.9,High Stress,90
+261,34,Male,Student,8.3,Low Mood,90
+262,48,Male,Student,5.9,Overthinking,67
+263,47,Female,Full-Time Employed,2.8,High Stress,20
+264,54,Female,Full-Time Employed,4.9,High Stress,42
+265,31,Female,Unemployed,5.3,Relaxed,86
+266,24,Female,Full-Time Employed,1.0,Relaxed,45
+267,36,Female,Full-Time Employed,6.8,Overthinking,47
+268,35,Male,Freelancer,3.8,High Stress,157
+269,30,Male,Freelancer,7.1,Relaxed,86
+270,18,Female,Student,6.8,Relaxed,134
+271,24,Male,Freelancer,4.1,Relaxed,136
+272,43,Female,Student,5.6,Relaxed,113
+273,28,Female,Full-Time Employed,5.9,High Stress,39
+274,40,Male,Unemployed,6.4,Low Mood,60
+275,48,Female,Full-Time Employed,6.8,Low Mood,56
+276,46,Female,Full-Time Employed,7.0,Relaxed,70
+277,33,Female,Full-Time Employed,4.4,Relaxed,88
+278,29,Female,Full-Time Employed,4.7,High Stress,21
+279,47,Female,Unemployed,6.0,Low Mood,88
+280,15,Male,Student,4.7,High Stress,71
+281,48,Male,Full-Time Employed,9.9,High Stress,29
+282,53,Female,Full-Time Employed,8.1,Overthinking,61
+283,41,Female,Full-Time Employed,4.7,High Stress,28
+284,52,Male,Retired,5.9,Relaxed,74
+285,19,Male,Student,4.2,Overthinking,114
+286,22,Female,Full-Time Employed,5.4,High Stress,56
+287,33,Female,Student,5.8,Overthinking,103
+288,14,Female,Student,3.7,Overthinking,78
+289,21,Female,Student,7.1,Low Mood,127
+290,36,Male,Full-Time Employed,4.2,Relaxed,45
+291,16,Male,Student,4.5,Relaxed,154
+292,17,Female,Student,7.9,High Stress,99
+293,38,Male,Full-Time Employed,5.4,High Stress,20
+294,51,Male,Full-Time Employed,6.1,Low Mood,20
+295,28,Male,Unemployed,8.3,Low Mood,110
+296,34,Female,Full-Time Employed,7.0,Overthinking,77
+297,48,Female,Freelancer,6.2,High Stress,75
+298,27,Male,Full-Time Employed,5.9,Overthinking,97
+299,49,Male,Full-Time Employed,9.1,High Stress,86
+300,25,Female,Freelancer,4.1,Low Mood,100
+301,30,Non-Binary,Full-Time Employed,3.9,High Stress,58
+302,52,Male,Freelancer,4.3,Relaxed,117
+303,22,Male,Unemployed,5.5,High Stress,142
+304,48,Male,Student,4.9,Relaxed,112
+305,26,Female,Full-Time Employed,6.3,High Stress,49
+306,28,Male,Freelancer,3.3,Relaxed,111
+307,31,Male,Full-Time Employed,7.1,High Stress,58
+308,46,Female,Student,9.9,Overthinking,118
+309,19,Female,Student,5.3,Overthinking,55
+310,40,Male,Student,1.0,Overthinking,102
+311,36,Female,Full-Time Employed,8.7,Overthinking,56
+312,40,Male,Full-Time Employed,5.4,Overthinking,43
+313,47,Female,Full-Time Employed,4.0,Overthinking,64
+314,51,Male,Retired,2.7,Overthinking,143
+315,27,Female,Full-Time Employed,10.0,High Stress,48
+316,49,Male,Full-Time Employed,7.2,Overthinking,62
+317,21,Female,Student,3.8,Overthinking,135
+318,48,Female,Full-Time Employed,6.4,Overthinking,49
+319,32,Female,Full-Time Employed,3.3,Overthinking,22
+320,43,Female,Full-Time Employed,7.1,Overthinking,60
+321,27,Female,Full-Time Employed,7.0,Relaxed,20
+322,33,Male,Full-Time Employed,4.4,Relaxed,20
+323,38,Male,Full-Time Employed,7.1,High Stress,53
+324,53,Female,Full-Time Employed,10.0,High Stress,20
+325,37,Male,Full-Time Employed,7.8,High Stress,20
+326,27,Female,Freelancer,5.2,Overthinking,85
+327,39,Non-Binary,Full-Time Employed,4.4,Relaxed,26
+328,51,Male,Full-Time Employed,8.6,High Stress,41
+329,36,Female,Unemployed,6.4,Low Mood,122
+330,35,Male,Full-Time Employed,5.2,Low Mood,50
+331,32,Female,Full-Time Employed,7.0,Overthinking,24
+332,16,Male,Student,2.5,Overthinking,128
+333,55,Male,Freelancer,6.8,High Stress,59
+334,32,Female,Freelancer,5.0,High Stress,100
+335,22,Female,Freelancer,7.8,Overthinking,56
+336,41,Female,Student,5.8,Relaxed,101
+337,33,Female,Full-Time Employed,10.0,Relaxed,37
+338,20,Male,Student,4.7,High Stress,122
+339,27,Female,Full-Time Employed,6.7,High Stress,63
+340,22,Male,Unemployed,7.3,Low Mood,80
+341,32,Female,Full-Time Employed,7.6,Relaxed,25
+342,27,Female,Full-Time Employed,2.3,High Stress,37
+343,51,Female,Full-Time Employed,7.9,High Stress,91
+344,49,Female,Freelancer,6.9,Low Mood,135
+345,53,Male,Full-Time Employed,4.5,Relaxed,20
+346,30,Female,Student,7.0,High Stress,115
+347,43,Male,Student,3.3,Relaxed,51
+348,22,Female,Full-Time Employed,6.7,High Stress,33
+349,46,Male,Student,5.8,Overthinking,71
+350,38,Female,Freelancer,6.8,Relaxed,121
+351,27,Female,Freelancer,5.4,Low Mood,62
+352,24,Male,Full-Time Employed,5.5,Relaxed,55
+353,48,Male,Full-Time Employed,6.9,High Stress,45
+354,54,Female,Full-Time Employed,1.7,Low Mood,40
+355,27,Male,Full-Time Employed,3.6,High Stress,86
+356,43,Male,Unemployed,7.7,High Stress,138
+357,54,Male,Full-Time Employed,5.3,High Stress,41
+358,17,Male,Student,5.1,Relaxed,86
+359,17,Female,Student,5.0,Relaxed,57
+360,41,Female,Full-Time Employed,8.4,High Stress,44
+361,21,Male,Student,4.0,High Stress,143
+362,15,Male,Part-Time,2.2,Relaxed,91
+363,54,Male,Full-Time Employed,7.3,High Stress,63
+364,35,Male,Full-Time Employed,7.0,High Stress,20
+365,54,Male,Full-Time Employed,7.2,High Stress,34
+366,29,Male,Full-Time Employed,7.9,Overthinking,56
+367,42,Male,Full-Time Employed,6.6,Low Mood,47
+368,43,Female,Full-Time Employed,3.2,Overthinking,65
+369,25,Male,Full-Time Employed,4.2,Relaxed,29
+370,48,Female,Freelancer,8.9,Overthinking,51
+371,24,Female,Full-Time Employed,6.2,High Stress,73
+372,34,Female,Full-Time Employed,4.6,Relaxed,21
+373,34,Female,Full-Time Employed,6.6,Relaxed,57
+374,18,Female,Student,4.5,Relaxed,106
+375,33,Female,Student,5.4,Relaxed,53
+376,50,Female,Full-Time Employed,3.7,High Stress,71
+377,16,Female,Student,5.2,High Stress,80
+378,46,Female,Full-Time Employed,4.3,High Stress,46
+379,22,Female,Full-Time Employed,3.9,Relaxed,36
+380,22,Male,Full-Time Employed,4.1,Relaxed,85
+381,17,Male,Student,3.4,Overthinking,128
+382,48,Male,Freelancer,6.2,Relaxed,49
+383,30,Female,Student,5.5,Overthinking,151
+384,47,Female,Full-Time Employed,8.4,High Stress,28
+385,37,Female,Freelancer,8.8,Relaxed,147
+386,45,Female,Full-Time Employed,8.9,Low Mood,38
+387,14,Male,Student,2.6,Low Mood,86
+388,21,Male,Student,5.2,Overthinking,88
+389,36,Female,Full-Time Employed,8.3,High Stress,34
+390,53,Female,Full-Time Employed,8.7,Low Mood,108
+391,25,Non-Binary,Full-Time Employed,9.1,Low Mood,43
+392,25,Male,Full-Time Employed,6.3,Low Mood,37
+393,28,Female,Full-Time Employed,5.2,Low Mood,46
+394,54,Female,Retired,8.2,Overthinking,70
+395,32,Female,Full-Time Employed,6.7,High Stress,84
+396,39,Female,Unemployed,6.7,Overthinking,58
+397,42,Female,Full-Time Employed,9.4,High Stress,29
+398,35,Male,Freelancer,6.1,Overthinking,118
+399,53,Female,Freelancer,8.5,Overthinking,96
+400,34,Female,Freelancer,4.7,Relaxed,108
+401,51,Female,Full-Time Employed,5.5,High Stress,83
+402,33,Female,Freelancer,5.5,Low Mood,120
+403,42,Male,Full-Time Employed,6.6,Low Mood,48
+404,17,Male,Student,6.7,Overthinking,147
+405,20,Non-Binary,Student,7.6,High Stress,79
+406,41,Female,Full-Time Employed,9.4,High Stress,42
+407,41,Female,Full-Time Employed,2.7,Relaxed,44
+408,17,Male,Part-Time,2.6,Relaxed,92
+409,35,Female,Freelancer,4.7,Relaxed,68
+410,25,Female,Full-Time Employed,5.1,Overthinking,20
+411,16,Female,Part-Time,3.2,Overthinking,105
+412,35,Male,Full-Time Employed,5.5,High Stress,29
+413,15,Female,Part-Time,7.4,Relaxed,142
+414,37,Female,Full-Time Employed,8.2,High Stress,43
+415,47,Male,Full-Time Employed,5.7,High Stress,38
+416,40,Female,Freelancer,5.4,Relaxed,122
+417,54,Female,Retired,7.1,Overthinking,105
+418,14,Female,Student,1.3,High Stress,90
+419,21,Male,Part-Time,4.5,Low Mood,78
+420,36,Male,Freelancer,5.2,Overthinking,186
+421,51,Male,Retired,5.9,Overthinking,104
+422,19,Male,Part-Time,6.5,Overthinking,122
+423,35,Male,Freelancer,5.1,Overthinking,69
+424,38,Female,Full-Time Employed,3.0,High Stress,30
+425,31,Male,Student,7.3,Low Mood,147
+426,30,Female,Full-Time Employed,5.0,High Stress,79
+427,25,Non-Binary,Freelancer,3.4,Overthinking,106
+428,19,Female,Part-Time,3.7,Relaxed,85
+429,39,Female,Freelancer,8.6,High Stress,89
+430,40,Female,Freelancer,3.1,Overthinking,78
+431,21,Female,Student,5.7,High Stress,66
+432,32,Male,Full-Time Employed,5.4,High Stress,68
+433,55,Male,Freelancer,7.3,Relaxed,108
+434,14,Female,Student,1.9,High Stress,113
+435,42,Female,Full-Time Employed,6.4,Overthinking,36
+436,48,Male,Full-Time Employed,6.6,Relaxed,51
+437,53,Female,Retired,6.1,Relaxed,84
+438,27,Female,Full-Time Employed,3.6,High Stress,26
+439,48,Male,Student,4.9,Overthinking,136
+440,33,Non-Binary,Full-Time Employed,6.4,Low Mood,48
+441,26,Female,Full-Time Employed,1.6,High Stress,57
+442,51,Male,Full-Time Employed,4.5,High Stress,65
+443,21,Female,Student,4.8,High Stress,98
+444,33,Male,Freelancer,5.8,Relaxed,101
+445,46,Female,Full-Time Employed,6.3,Relaxed,20
+446,39,Male,Full-Time Employed,6.6,Relaxed,22
+447,52,Male,Full-Time Employed,6.1,Relaxed,21
+448,34,Female,Full-Time Employed,8.0,Overthinking,60
+449,55,Female,Retired,9.2,Relaxed,96
+450,54,Male,Full-Time Employed,4.8,High Stress,22
+451,22,Male,Freelancer,3.5,Overthinking,109
+452,37,Female,Student,7.2,High Stress,108
+453,50,Male,Full-Time Employed,6.6,High Stress,27
+454,54,Male,Freelancer,7.6,Overthinking,94
+455,30,Male,Full-Time Employed,8.1,Low Mood,58
+456,37,Male,Full-Time Employed,10.0,High Stress,23
+457,34,Female,Unemployed,4.7,Relaxed,109
+458,52,Female,Full-Time Employed,6.7,Relaxed,52
+459,54,Male,Freelancer,1.8,Relaxed,70
+460,52,Female,Full-Time Employed,9.7,Overthinking,50
+461,26,Male,Full-Time Employed,2.3,Low Mood,54
+462,24,Female,Full-Time Employed,2.4,Low Mood,29
+463,32,Non-Binary,Freelancer,6.7,Overthinking,81
+464,24,Male,Full-Time Employed,7.2,High Stress,20
+465,26,Female,Freelancer,5.5,High Stress,83
+466,14,Female,Student,3.9,Overthinking,94
+467,53,Male,Full-Time Employed,9.1,High Stress,31
+468,32,Male,Full-Time Employed,4.1,High Stress,20
+469,25,Male,Full-Time Employed,8.0,Overthinking,27
+470,21,Female,Part-Time,3.6,Overthinking,84
+471,21,Non-Binary,Student,4.3,Low Mood,115
+472,25,Female,Student,5.3,Overthinking,109
+473,46,Female,Student,6.3,Low Mood,115
+474,39,Female,Full-Time Employed,7.5,High Stress,26
+475,52,Female,Retired,4.2,Relaxed,98
+476,41,Female,Full-Time Employed,6.7,Overthinking,20
+477,18,Male,Student,5.5,Overthinking,105
+478,21,Female,Student,2.5,Overthinking,110
+479,38,Female,Full-Time Employed,6.0,Overthinking,36
+480,40,Male,Full-Time Employed,9.3,Overthinking,52
+481,36,Female,Full-Time Employed,5.7,Relaxed,20
+482,43,Male,Full-Time Employed,8.5,Low Mood,24
+483,36,Male,Full-Time Employed,6.4,Overthinking,64
+484,33,Female,Freelancer,8.7,High Stress,107
+485,31,Male,Freelancer,5.1,Relaxed,84
+486,31,Male,Full-Time Employed,6.3,Relaxed,65
+487,15,Male,Student,6.3,High Stress,98
+488,17,Female,Student,3.1,High Stress,82
+489,43,Male,Full-Time Employed,5.9,Relaxed,40
+490,46,Female,Freelancer,9.9,Overthinking,83
+491,49,Male,Full-Time Employed,5.9,Overthinking,20
+492,31,Non-Binary,Full-Time Employed,6.4,Relaxed,76
+493,50,Female,Full-Time Employed,8.1,Overthinking,30
+494,32,Male,Full-Time Employed,9.2,High Stress,24
+495,41,Male,Full-Time Employed,3.6,High Stress,20
+496,53,Male,Full-Time Employed,5.4,Relaxed,20
+497,33,Female,Freelancer,6.9,Low Mood,112
+498,46,Male,Student,9.2,Overthinking,114
+499,25,Male,Full-Time Employed,7.3,High Stress,74
+500,28,Male,Freelancer,3.1,Relaxed,91

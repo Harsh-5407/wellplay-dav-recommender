@@ -1,0 +1,14 @@
+﻿# Python virtual environment & cache
+backend/venv/
+venv/
+**/__pycache__/
+*.pyc
+
+# React / Node dependencies & build output
+frontend/node_modules/
+node_modules/
+frontend/dist/
+
+# Editor & OS files
+.vscode/
+.DS_Store
