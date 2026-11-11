@@ -164,7 +164,7 @@ export default function App() {
   const [catalogGames, setCatalogGames] = useState([]);
   const [compareIds, setCompareIds] = useState([]);
   const [comparePlatformFilter, setComparePlatformFilter] = useState("Any");
-  const [activePersona, setActivePersona] = useState("burnout");
+  const [activePersona, setActivePersona] = useState("");
   const [loading, setLoading] = useState(false);
 
   const [profile, setProfile] = useState({
@@ -228,8 +228,10 @@ export default function App() {
 
   // Auto-refresh on mount and whenever Platform or Algorithm Mode changes
   useEffect(() => {
+  if (recData) {
     fetchRecommendations(profile);
-  }, [profile.preferred_platform, profile.recommendation_mode]);
+  }
+}, [profile.preferred_platform, profile.recommendation_mode]);
 
   const applyDemoPersona = (persona) => {
     setActivePersona(persona.id);
@@ -683,6 +685,25 @@ export default function App() {
 
           {/* Right Panel: HERO TOP PICK + TOP 6 RECOMMENDATIONS SHELF + RADAR DEEP-DIVE */}
           <section style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+            {!recData && !loading && (
+              <div
+                style={{
+                  ...styles.card,
+                  textAlign: "center",
+                  padding: "64px 28px",
+                  border: "1.5px dashed #334155",
+                }}
+              >
+                <Sparkles size={34} color="#38bdf8" style={{ marginBottom: "12px" }} />
+                <h2 style={{ margin: "0 0 8px", fontSize: "20px", fontWeight: 700, color: "#f8fafc" }}>
+                  Ready to Analyze Your Wellness Profile
+                </h2>
+                <p style={{ margin: "0 auto", maxWidth: "460px", fontSize: "13px", color: "#94a3b8", lineHeight: 1.6 }}>
+                  Adjust your age, platform preference, eye-strain sensitivity, mental state, and daily free time on the left—or pick a <strong>Quick Demo Persona</strong>—then click <strong>Run Multi-Factor Recommendation</strong>.
+                </p>
+              </div>
+            )}
+
             {/* 1. HERO SPOTLIGHT: #1 RECOMMENDED GAME */}
             {recData?.recommendations?.length > 0 && (
               <div style={styles.heroSpotlight}>
