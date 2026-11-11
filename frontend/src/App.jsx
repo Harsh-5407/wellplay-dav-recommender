@@ -1,5 +1,21 @@
 import { useEffect, useState } from "react";
-import { Activity, BarChart3, Brain, Eye, Gamepad2, ShieldCheck, Sparkles, UserCheck } from "lucide-react";
+import {
+  Activity,
+  BarChart3,
+  BookOpen,
+  Brain,
+  CheckCircle2,
+  Download,
+  Eye,
+  FlaskConical,
+  Gamepad2,
+  GitCompare,
+  MonitorSmartphone,
+  Settings2,
+  ShieldCheck,
+  Sparkles,
+  UserCheck,
+} from "lucide-react";
 import PlotlyChart from "./PlotlyChart";
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
@@ -24,11 +40,54 @@ const FEATURE_KEYS = [
   "grind_complexity_score",
 ];
 
+const CLUSTER_COLORS = ["#38bdf8", "#34d399", "#a855f7", "#f59e0b"];
+
+const DATA_DICTIONARY = [
+  {
+    field: "visual_strain_score",
+    scale: "1.0 – 10.0",
+    definition: "Measures camera motion speed, particle density, and screen-flash fatigue (includes +0.6 mobile screen modifier).",
+  },
+  {
+    field: "cognitive_load_score",
+    scale: "1.0 – 10.0",
+    definition: "Quantifies strategic planning, multi-tasking, and working-memory overhead required during gameplay.",
+  },
+  {
+    field: "session_commitment_score",
+    scale: "1.0 – 10.0",
+    definition: "Log-scaled (np.log1p) function of average completion hours and save-point flexibility.",
+  },
+  {
+    field: "social_pressure_score",
+    scale: "1.0 – 10.0",
+    definition: "Captures competitive PvP stress, team dependency, and real-time communication pressure.",
+  },
+  {
+    field: "emotional_heaviness_score",
+    scale: "1.0 – 10.0",
+    definition: "Evaluates bleak narrative themes, psychological horror, or high-tension emotional stakes.",
+  },
+  {
+    field: "reflex_intensity_score",
+    scale: "1.0 – 10.0",
+    definition: "Measures Actions-Per-Minute (APM), twitch reaction windows, and precision timing demands.",
+  },
+  {
+    field: "grind_complexity_score",
+    scale: "1.0 – 10.0",
+    definition: "Captures repetitive resource farming, complex skill trees, and micro-management loops.",
+  },
+];
+
 export default function App() {
   const [activeTab, setActiveTab] = useState("recommender");
   const [edaData, setEdaData] = useState(null);
+  const [advData, setAdvData] = useState(null);
   const [recData, setRecData] = useState(null);
   const [selectedGame, setSelectedGame] = useState(null);
+  const [catalogGames, setCatalogGames] = useState([]);
+  const [compareIds, setCompareIds] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [profile, setProfile] = useState({
@@ -38,14 +97,32 @@ export default function App() {
     eye_strain_sensitivity: 7.5,
     primary_mental_state: "Overthinking",
     daily_free_time_mins: 60,
+    preferred_platform: "Any",
+    recommendation_mode: "Balanced",
   });
 
-  // Fetch EDA summary on mount
+  // Fetch EDA summary, catalog games, and Phase 3 advanced analytics on mount
   useEffect(() => {
     fetch(`${API_BASE}/api/eda-summary`)
       .then((res) => res.json())
       .then((data) => setEdaData(data))
       .catch((err) => console.error("EDA fetch failed:", err));
+
+    fetch(`${API_BASE}/api/games`)
+      .then((res) => res.json())
+      .then((data) => {
+        const list = data.games || [];
+        setCatalogGames(list);
+        if (list.length >= 2) {
+          setCompareIds([list[0].game_id, list[1].game_id]);
+        }
+      })
+      .catch((err) => console.error("Catalog fetch failed:", err));
+
+    fetch(`${API_BASE}/api/advanced-analytics`)
+      .then((res) => res.json())
+      .then((data) => setAdvData(data))
+      .catch((err) => console.error("Advanced analytics fetch failed:", err));
   }, []);
 
   // Fetch recommendations whenever profile is submitted
@@ -73,6 +150,42 @@ export default function App() {
   useEffect(() => {
     fetchRecommendations();
   }, []);
+
+  // Phase 4: Export Personalized Recommendations as CSV
+  const exportRecommendationsCSV = () => {
+    if (!recData?.recommendations?.length) return;
+    const headers = [
+      "Rank",
+      "Title",
+      "Platform",
+      "Match Score (%)",
+      "Match Category",
+      "Avg Playtime (hrs)",
+      ...AXIS_LABELS,
+    ];
+    const rows = recData.recommendations.map((g, idx) => [
+      idx + 1,
+      `"${g.title.replace(/"/g, '""')}"`,
+      g.platform,
+      g.match_score,
+      `"${g.match_category}"`,
+      g.avg_playtime_hrs,
+      ...FEATURE_KEYS.map((k) => g.scores[k]),
+    ]);
+    const csvContent = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute(
+      "download",
+      `WellPlay_Recommendations_${profile.recommendation_mode.replace(/\s+/g, "_")}.csv`
+    );
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
 
   // Build Radar Chart Data for Selected Game vs User Comfort Ceiling
   const buildRadarData = () => {
@@ -120,8 +233,8 @@ export default function App() {
             <Gamepad2 size={22} color="#38bdf8" />
           </div>
           <div>
-            <h1 style={{ margin: 0, fontSize: "18px", fontWeight: 700 }}>
-              W e l l P l a y D A V A n a l y t i c s
+            <h1 style={{ margin: 0, fontSize: "18px", fontWeight: 700, letterSpacing: "-0.01em" }}>
+              WellPlay DAV Analytics
             </h1>
             <p style={{ margin: 0, fontSize: "12px", color: "#94a3b8" }}>
               Constraint-Aware Multi-Factor Game Recommendation & Exploratory Dashboard
@@ -138,10 +251,28 @@ export default function App() {
             <Sparkles size={15} /> Personal Recommender
           </button>
           <button
+            onClick={() => setActiveTab("compare")}
+            style={activeTab === "compare" ? styles.tabActive : styles.tab}
+          >
+            <GitCompare size={15} /> Compare Games
+          </button>
+          <button
             onClick={() => setActiveTab("eda")}
             style={activeTab === "eda" ? styles.tabActive : styles.tab}
           >
             <BarChart3 size={15} /> Dataset EDA & Insights
+          </button>
+          <button
+            onClick={() => setActiveTab("stats")}
+            style={activeTab === "stats" ? styles.tabActive : styles.tab}
+          >
+            <FlaskConical size={15} /> Statistical & ML Insights
+          </button>
+          <button
+            onClick={() => setActiveTab("about")}
+            style={activeTab === "about" ? styles.tabActive : styles.tab}
+          >
+            <BookOpen size={15} /> Methodology & Docs
           </button>
         </div>
       </header>
@@ -198,6 +329,23 @@ export default function App() {
                     <option>Retired</option>
                   </select>
                 </div>
+              </div>
+
+              {/* Platform Selector */}
+              <div style={styles.formGroup}>
+                <label style={styles.label}>
+                  <MonitorSmartphone size={14} style={{ verticalAlign: "middle", marginRight: 5 }} />
+                  Preferred Device / Platform
+                </label>
+                <select
+                  value={profile.preferred_platform}
+                  onChange={(e) => setProfile({ ...profile, preferred_platform: e.target.value })}
+                  style={styles.select}
+                >
+                  <option value="Any">Any Device (PC & Mobile)</option>
+                  <option value="PC">PC / Desktop Only</option>
+                  <option value="Mobile">Mobile (iOS / Android) Only</option>
+                </select>
               </div>
 
               <div style={styles.formGroup}>
@@ -258,12 +406,38 @@ export default function App() {
                 />
               </div>
 
+              {/* Recommendation Modes */}
+              <div style={styles.formGroup}>
+                <label style={styles.label}>
+                  <Settings2 size={14} style={{ verticalAlign: "middle", marginRight: 5 }} />
+                  Algorithm Mode (What-If Weighting)
+                </label>
+                <select
+                  value={profile.recommendation_mode}
+                  onChange={(e) =>
+                    setProfile({ ...profile, recommendation_mode: e.target.value })
+                  }
+                  style={{
+                    ...styles.select,
+                    borderColor: "#38bdf8",
+                    color: "#38bdf8",
+                    fontWeight: "bold",
+                  }}
+                >
+                  <option value="Balanced">Balanced (Default)</option>
+                  <option value="Relaxation">Relaxation Mode</option>
+                  <option value="High Energy">High Energy Mode</option>
+                  <option value="Casual">Casual Mode</option>
+                  <option value="Social">Social Mode</option>
+                </select>
+              </div>
+
               <button onClick={fetchRecommendations} style={styles.primaryBtn}>
                 {loading ? "Analyzing Constraints..." : "Run Multi-Factor Recommendation"}
               </button>
             </aside>
 
-            {/* Live Tolerance Summary Card (Fills Left Space & Adds DAV Clarity) */}
+            {/* Live Tolerance Summary Card */}
             {recData?.user_target_profile && (
               <div style={styles.card}>
                 <h3
@@ -310,7 +484,7 @@ export default function App() {
                         >
                           <div
                             style={{
-                              width: `${val * 10}%`,
+                              width: `${(val / 10) * 100}%`,
                               height: "100%",
                               background: val <= 4 ? "#34d399" : "#38bdf8",
                             }}
@@ -340,10 +514,11 @@ export default function App() {
                 >
                   <div>
                     <span style={styles.heroEyebrow}>
-                      ★ #1 TOP WELLNESS RECOMMENDATION FOR YOU
+                      ★ #1 RECOMMENDED • {recData.recommendations[0].match_category.toUpperCase()}
                     </span>
                     <h2 style={styles.heroTitle}>{recData.recommendations[0].title}</h2>
                     <p style={{ margin: "4px 0 0", fontSize: "13px", color: "#cbd5e1" }}>
+                      Platform: <strong>{recData.recommendations[0].platform}</strong> &nbsp;•&nbsp;{" "}
                       {recData.recommendations[0].tags.split(",").join("  •  ")}
                     </p>
                   </div>
@@ -387,24 +562,30 @@ export default function App() {
               </div>
             )}
 
-            {/* 2. ALL 6 RECOMMENDED GAMES SHELF (2x3 Grid) */}
+            {/* 2. TOP 6 RECOMMENDED GAMES SHELF + CSV EXPORT */}
             <div style={styles.card}>
               <div
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
+                  flexWrap: "wrap",
+                  gap: "10px",
                   marginBottom: "14px",
                 }}
               >
                 <h2 style={styles.cardTitle}>
-                  <Gamepad2 size={18} color="#38bdf8" /> Top 6 Recommended Games (Click Any to
-                  Inspect Radar)
+                  <Gamepad2 size={18} color="#38bdf8" /> Top Recommended Games (Click to Inspect)
                 </h2>
+                {recData?.recommendations?.length > 0 && (
+                  <button onClick={exportRecommendationsCSV} style={styles.exportBtn}>
+                    <Download size={14} /> Export CSV Report
+                  </button>
+                )}
               </div>
 
               <div style={styles.gamesGrid}>
-                {recData?.recommendations?.map((game, index) => {
+                {recData?.recommendations?.slice(0, 6).map((game, index) => {
                   const isSelected = selectedGame?.game_id === game.game_id;
                   return (
                     <div
@@ -430,7 +611,7 @@ export default function App() {
                         <span style={index === 0 ? styles.rankBadgeTop : styles.rankBadge}>
                           #{index + 1} PICK
                         </span>
-                        <span style={styles.scoreTag}>{game.match_score}% Match</span>
+                        <span style={styles.scoreTag}>{game.match_score}%</span>
                       </div>
 
                       <h3
@@ -444,8 +625,8 @@ export default function App() {
                         {game.title}
                       </h3>
 
-                      <p style={{ margin: "0 0 12px", fontSize: "11px", color: "#94a3b8" }}>
-                        {game.tags.split(",").slice(0, 3).join(" • ")}
+                      <p style={{ margin: "0 0 8px", fontSize: "11px", color: "#94a3b8" }}>
+                        {game.match_category} • {game.platform}
                       </p>
 
                       <div style={styles.miniMetrics}>
@@ -469,7 +650,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* 3. DEEP-DIVE RADAR EXPLAINABILITY FOR SELECTED GAME */}
+            {/* 3. DEEP-DIVE RADAR & EXPLAINABILITY */}
             {selectedGame && recData && (
               <div style={styles.card}>
                 <div
@@ -483,23 +664,23 @@ export default function App() {
                 >
                   <div>
                     <h2 style={styles.cardTitle}>
-                      <ShieldCheck size={18} color="#34d399" /> Analytical Breakdown: Why "
-                      {selectedGame.title}" Was Recommended
+                      <ShieldCheck size={18} color="#34d399" /> Explainable Penalty Breakdown: "
+                      {selectedGame.title}"
                     </h2>
                     <p style={{ margin: "4px 0 0", fontSize: "12px", color: "#94a3b8" }}>
-                      7-axis constraint comparison between your comfort ceiling (blue dashed) and
-                      game intensity (green).
+                      Comparing game intensity vs your comfort ceiling. Model score reflects
+                      constraint alignment, not objective game quality.
                     </p>
                   </div>
-                  <span style={styles.matchPill}>{selectedGame.match_score}% Wellness Match</span>
+                  <span style={styles.matchPill}>{selectedGame.match_category}</span>
                 </div>
 
                 <div style={styles.radarSplit}>
                   <PlotlyChart
                     data={buildRadarData()}
-                    style={{ width: "100%", height: "340px" }}
+                    style={{ width: "100%", height: "350px" }}
                     layout={{
-                      margin: { t: 35, r: 75, b: 35, l: 75 },
+                      margin: { t: 35, r: 85, b: 35, l: 95 },
                       polar: {
                         bgcolor: "rgba(15,23,42,0.5)",
                         radialaxis: {
@@ -516,21 +697,45 @@ export default function App() {
 
                   <div style={styles.explainBox}>
                     <h4 style={{ margin: "0 0 10px", fontSize: "14px", color: "#38bdf8" }}>
-                      Key Wellness Match Factors
+                      Dimension-by-Dimension Penalty
                     </h4>
-                    <ul
+
+                    <div
                       style={{
-                        margin: 0,
-                        paddingLeft: "18px",
-                        fontSize: "13px",
-                        lineHeight: 1.7,
-                        color: "#e2e8f0",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "8px",
+                        fontSize: "12px",
                       }}
                     >
-                      {selectedGame.reasons.map((r, i) => (
-                        <li key={i}>{r}</li>
-                      ))}
-                    </ul>
+                      {FEATURE_KEYS.map((key, idx) => {
+                        const breakdown = selectedGame.match_breakdown[key];
+                        const isExceeding = breakdown.status === "Exceeds Limit";
+                        return (
+                          <div
+                            key={key}
+                            style={{
+                              display: "flex",
+                              justifyContent: "space-between",
+                              paddingBottom: "4px",
+                              borderBottom: "1px solid rgba(255,255,255,0.05)",
+                            }}
+                          >
+                            <span style={{ color: "#cbd5e1" }}>{AXIS_LABELS[idx]}</span>
+                            <span
+                              style={{
+                                color: isExceeding ? "#ef4444" : "#34d399",
+                                fontWeight: 600,
+                              }}
+                            >
+                              {breakdown.game_value} / {breakdown.user_ceiling}{" "}
+                              {isExceeding ? "(Penalty applied)" : ""}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+
                     <div
                       style={{
                         marginTop: "14px",
@@ -540,15 +745,21 @@ export default function App() {
                         color: "#94a3b8",
                       }}
                     >
-                      <div>
-                        <strong>Recommended Daily Cap:</strong> {safeDailyMins} mins/day
-                      </div>
-                      <div>
-                        <strong>Total Campaign Length:</strong> {selectedGame.avg_playtime_hrs} hrs
-                      </div>
-                      <div>
-                        <strong>All Tags:</strong> {selectedGame.tags}
-                      </div>
+                      <h4 style={{ margin: "0 0 6px", fontSize: "13px", color: "#e2e8f0" }}>
+                        Plain-Language Insight:
+                      </h4>
+                      <ul
+                        style={{
+                          margin: 0,
+                          paddingLeft: "16px",
+                          color: "#cbd5e1",
+                          lineHeight: 1.6,
+                        }}
+                      >
+                        {selectedGame.reasons.map((r, i) => (
+                          <li key={i}>{r}</li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -558,7 +769,221 @@ export default function App() {
         </main>
       )}
 
-      {/* TAB 2: EXPLORATORY DATA ANALYSIS (EDA) */}
+      {/* TAB 2: SIDE-BY-SIDE 7-DIMENSIONAL GAME COMPARISON */}
+      {activeTab === "compare" && (
+        <main
+          style={{
+            maxWidth: "1320px",
+            margin: "24px auto",
+            padding: "0 20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "18px",
+          }}
+        >
+          <div style={styles.card}>
+            <h2 style={styles.cardTitle}>
+              <GitCompare size={18} color="#38bdf8" /> Side-by-Side 7-Dimensional Game Comparison
+              (Select 2–3 Games)
+            </h2>
+            <p style={{ margin: "6px 0 14px", fontSize: "12px", color: "#94a3b8" }}>
+              Compare structural cognitive, visual, and emotional load across titles on a unified
+              1–10 scale.
+            </p>
+
+            {/* 3 Game Selectors */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+                gap: "12px",
+              }}
+            >
+              {[0, 1, 2].map((slotIdx) => (
+                <div key={slotIdx}>
+                  <label style={styles.label}>
+                    Game Slot {slotIdx + 1} {slotIdx === 2 ? "(Optional)" : ""}
+                  </label>
+                  <select
+                    value={compareIds[slotIdx] || ""}
+                    onChange={(e) => {
+                      const val = e.target.value ? Number(e.target.value) : null;
+                      const next = [...compareIds];
+                      if (val === null) {
+                        next.splice(slotIdx, 1);
+                      } else {
+                        next[slotIdx] = val;
+                      }
+                      setCompareIds(next.filter(Boolean));
+                    }}
+                    style={styles.select}
+                  >
+                    {slotIdx === 2 && <option value="">-- None --</option>}
+                    {catalogGames.map((g) => (
+                      <option key={g.game_id} value={g.game_id}>
+                        {g.title} ({g.platform})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Shared Radar + Side-by-Side Difference Matrix */}
+          {compareIds.length >= 2 &&
+            (() => {
+              const compared = compareIds
+                .map((id) => catalogGames.find((g) => g.game_id === id))
+                .filter(Boolean);
+              const palette = [
+                { line: "#38bdf8", fill: "rgba(56, 189, 248, 0.20)" },
+                { line: "#34d399", fill: "rgba(52, 211, 153, 0.20)" },
+                { line: "#a855f7", fill: "rgba(168, 85, 247, 0.20)" },
+              ];
+
+              const radarTraces = compared.map((g, idx) => {
+                const vals = FEATURE_KEYS.map((k) => g.scores[k]);
+                return {
+                  type: "scatterpolar",
+                  r: [...vals, vals[0]],
+                  theta: [...AXIS_LABELS, AXIS_LABELS[0]],
+                  fill: "toself",
+                  name: g.title,
+                  fillcolor: palette[idx % 3].fill,
+                  line: { color: palette[idx % 3].line, width: 2.5 },
+                };
+              });
+
+              return (
+                <div style={styles.radarSplit}>
+                  <div style={styles.card}>
+                    <h3 style={{ ...styles.cardTitle, marginBottom: "10px" }}>
+                      7-Axis Intensity Overlay
+                    </h3>
+                    <PlotlyChart
+                      data={radarTraces}
+                      style={{ width: "100%", height: "380px" }}
+                      layout={{
+                        margin: { t: 35, r: 85, b: 40, l: 95 },
+                        polar: {
+                          bgcolor: "rgba(15,23,42,0.5)",
+                          radialaxis: {
+                            visible: true,
+                            range: [0, 10],
+                            gridcolor: "#334155",
+                            tickfont: { size: 9 },
+                          },
+                          angularaxis: { gridcolor: "#334155", tickfont: { size: 10 } },
+                        },
+                        legend: { orientation: "h", y: -0.15 },
+                      }}
+                    />
+                  </div>
+
+                  <div style={styles.card}>
+                    <h3 style={{ ...styles.cardTitle, marginBottom: "12px" }}>
+                      Dimension & Metadata Matrix
+                    </h3>
+                    <div style={{ overflowX: "auto" }}>
+                      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "12px" }}>
+                        <thead>
+                          <tr
+                            style={{
+                              borderBottom: "1px solid #334155",
+                              color: "#94a3b8",
+                              textAlign: "left",
+                            }}
+                          >
+                            <th style={{ padding: "8px" }}>Metric</th>
+                            {compared.map((g, i) => (
+                              <th
+                                key={g.game_id}
+                                style={{ padding: "8px", color: palette[i % 3].line }}
+                              >
+                                {g.title}
+                              </th>
+                            ))}
+                            <th style={{ padding: "8px" }}>Spread</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr style={{ borderBottom: "1px solid #1e293b" }}>
+                            <td style={{ padding: "8px", color: "#cbd5e1" }}>Platform</td>
+                            {compared.map((g) => (
+                              <td key={g.game_id} style={{ padding: "8px" }}>
+                                {g.platform}
+                              </td>
+                            ))}
+                            <td style={{ padding: "8px", color: "#64748b" }}>—</td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #1e293b" }}>
+                            <td style={{ padding: "8px", color: "#cbd5e1" }}>Avg Playtime</td>
+                            {compared.map((g) => (
+                              <td key={g.game_id} style={{ padding: "8px" }}>
+                                {g.avg_playtime_hrs}h
+                              </td>
+                            ))}
+                            <td style={{ padding: "8px", color: "#38bdf8" }}>
+                              {(
+                                Math.max(...compared.map((g) => g.avg_playtime_hrs)) -
+                                Math.min(...compared.map((g) => g.avg_playtime_hrs))
+                              ).toFixed(1)}
+                              h
+                            </td>
+                          </tr>
+                          <tr style={{ borderBottom: "1px solid #1e293b" }}>
+                            <td style={{ padding: "8px", color: "#cbd5e1" }}>Overall Intensity</td>
+                            {compared.map((g) => (
+                              <td key={g.game_id} style={{ padding: "8px", fontWeight: 700 }}>
+                                {g.overall_intensity} / 10
+                              </td>
+                            ))}
+                            <td style={{ padding: "8px", color: "#34d399" }}>
+                              {(
+                                Math.max(...compared.map((g) => g.overall_intensity)) -
+                                Math.min(...compared.map((g) => g.overall_intensity))
+                              ).toFixed(2)}
+                            </td>
+                          </tr>
+                          {FEATURE_KEYS.map((key, idx) => {
+                            const vals = compared.map((g) => g.scores[key]);
+                            const diff = (Math.max(...vals) - Math.min(...vals)).toFixed(1);
+                            return (
+                              <tr
+                                key={key}
+                                style={{ borderBottom: "1px solid rgba(51,65,85,0.5)" }}
+                              >
+                                <td style={{ padding: "8px", color: "#cbd5e1" }}>
+                                  {AXIS_LABELS[idx]}
+                                </td>
+                                {compared.map((g) => (
+                                  <td key={g.game_id} style={{ padding: "8px", fontWeight: 600 }}>
+                                    {g.scores[key]}
+                                  </td>
+                                ))}
+                                <td
+                                  style={{
+                                    padding: "8px",
+                                    color: Number(diff) >= 4 ? "#f59e0b" : "#94a3b8",
+                                  }}
+                                >
+                                  Δ {diff}
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+        </main>
+      )}
+
+      {/* TAB 3: EXPLORATORY DATA ANALYSIS (EDA) */}
       {activeTab === "eda" && edaData && (
         <main style={{ maxWidth: "1320px", margin: "24px auto", padding: "0 20px" }}>
           {/* KPI Strip */}
@@ -601,7 +1026,12 @@ export default function App() {
                     zmax: 1,
                   },
                 ]}
-                layout={{ margin: { t: 20, r: 20, b: 110, l: 145 } }}
+                layout={{
+                  margin: { t: 20, r: 20, b: 110, l: 145 },
+                  plot_bgcolor: "rgba(0,0,0,0)",
+                  paper_bgcolor: "rgba(0,0,0,0)",
+                  font: { color: "#cbd5e1" },
+                }}
               />
             </div>
 
@@ -632,6 +1062,9 @@ export default function App() {
                   },
                 ]}
                 layout={{
+                  plot_bgcolor: "rgba(0,0,0,0)",
+                  paper_bgcolor: "rgba(0,0,0,0)",
+                  font: { color: "#cbd5e1" },
                   xaxis: { title: "Visual Strain Score (1-10)", gridcolor: "#334155" },
                   yaxis: { title: "Cognitive Load Score (1-10)", gridcolor: "#334155" },
                 }}
@@ -644,7 +1077,7 @@ export default function App() {
                 Demographic Analysis: Eye Strain & Daily Free Time by Employment
               </h3>
               <PlotlyChart
-                style={{ width: "100%", height: "360px" }}
+                style={{ width: "100%", height: "370px" }}
                 data={[
                   {
                     x: edaData.employment_stats.map((e) => e.employment_status),
@@ -661,7 +1094,12 @@ export default function App() {
                     marker: { color: "#34d399" },
                   },
                 ]}
-                layout={{ barmode: "group", yaxis: { gridcolor: "#334155" } }}
+                layout={{
+                  barmode: "group",
+                  margin: { t: 25, r: 20, b: 85, l: 45 },
+                  xaxis: { automargin: true },
+                  yaxis: { gridcolor: "#334155" },
+                }}
               />
             </div>
 
@@ -671,7 +1109,7 @@ export default function App() {
                 Psychological State Distribution Across Employment Cohorts
               </h3>
               <PlotlyChart
-                style={{ width: "100%", height: "360px" }}
+                style={{ width: "100%", height: "370px" }}
                 data={["Overthinking", "High Stress", "Low Mood", "Relaxed"].map((state, idx) => ({
                   x: edaData.mental_state_distribution.map((row) => row.employment_status),
                   y: edaData.mental_state_distribution.map((row) => row[state] || 0),
@@ -681,9 +1119,369 @@ export default function App() {
                 }))}
                 layout={{
                   barmode: "stack",
+                  margin: { t: 25, r: 20, b: 85, l: 55 },
+                  xaxis: { automargin: true },
                   yaxis: { title: "User Count", gridcolor: "#334155" },
                 }}
               />
+            </div>
+          </div>
+        </main>
+      )}
+
+      {/* TAB 4: PHASE 3 — STATISTICAL & UNSUPERVISED ML INSIGHTS */}
+      {activeTab === "stats" && advData && (
+        <main
+          style={{
+            maxWidth: "1320px",
+            margin: "24px auto",
+            padding: "0 20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+          }}
+        >
+          {/* 1. Data Quality & Governance Audit Strip */}
+          <div style={styles.card}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: "12px",
+              }}
+            >
+              <div>
+                <h2 style={styles.cardTitle}>
+                  <CheckCircle2 size={18} color="#34d399" /> Automated Dataset Quality & Governance
+                  Audit
+                </h2>
+                <p style={{ margin: "4px 0 0", fontSize: "12px", color: "#94a3b8" }}>
+                  Programmatic verification of missing values, duplicate records, and 1–10 scale
+                  boundaries.
+                </p>
+              </div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+                <span style={styles.auditBadge}>
+                  Base Titles: <strong>{advData.data_audit.unique_base_games}</strong> (250 catalog
+                  rows)
+                </span>
+                <span style={styles.auditBadge}>
+                  Missing Cells: <strong>{advData.data_audit.games_missing_values}</strong>
+                </span>
+                <span style={styles.auditBadge}>
+                  Duplicate User IDs: <strong>{advData.data_audit.users_duplicate_ids}</strong>
+                </span>
+                <span style={styles.auditBadge}>
+                  1–10 Scale Validated:{" "}
+                  <strong style={{ color: "#34d399" }}>
+                    {advData.data_audit.scale_validated ? "PASS" : "FAIL"}
+                  </strong>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* 2. Strict Statistical Hypothesis Testing Cards */}
+          <div style={styles.hypoGrid}>
+            {/* Test 1: Pearson vs Spearman */}
+            <div style={styles.card}>
+              <span style={styles.testTag}>BIVARIATE CORRELATION</span>
+              <h3 style={{ margin: "8px 0 4px", fontSize: "15px", color: "#f8fafc" }}>
+                {advData.hypothesis_tests.correlation.variables}
+              </h3>
+              <div style={styles.statRow}>
+                <span>
+                  Pearson linear <em>r</em>:{" "}
+                  <strong style={{ color: "#38bdf8" }}>
+                    {advData.hypothesis_tests.correlation.pearson_r}
+                  </strong>{" "}
+                  (p = {advData.hypothesis_tests.correlation.pearson_p})
+                </span>
+                <span>
+                  Spearman rank <em>ρ</em>:{" "}
+                  <strong style={{ color: "#34d399" }}>
+                    {advData.hypothesis_tests.correlation.spearman_rho}
+                  </strong>{" "}
+                  (p = {advData.hypothesis_tests.correlation.spearman_p})
+                </span>
+              </div>
+              <p style={styles.testNote}>{advData.hypothesis_tests.correlation.interpretation}</p>
+            </div>
+
+            {/* Test 2: One-Way ANOVA */}
+            <div style={styles.card}>
+              <span style={styles.testTag}>ONE-WAY ANOVA + EFFECT SIZE</span>
+              <h3 style={{ margin: "8px 0 4px", fontSize: "15px", color: "#f8fafc" }}>
+                {advData.hypothesis_tests.anova.variables}
+              </h3>
+              <p style={{ margin: "0 0 8px", fontSize: "11px", color: "#94a3b8" }}>
+                {advData.hypothesis_tests.anova.null_hypothesis}
+              </p>
+              <div style={styles.statRow}>
+                <span>
+                  F-Stat:{" "}
+                  <strong style={{ color: "#38bdf8" }}>
+                    {advData.hypothesis_tests.anova.f_statistic}
+                  </strong>{" "}
+                  (p = {advData.hypothesis_tests.anova.p_value})
+                </span>
+                <span>
+                  Effect Size η²:{" "}
+                  <strong style={{ color: "#34d399" }}>
+                    {advData.hypothesis_tests.anova.eta_squared}
+                  </strong>{" "}
+                  | Levene p = {advData.hypothesis_tests.anova.levene_p}
+                </span>
+              </div>
+              <p style={styles.testNote}>{advData.hypothesis_tests.anova.interpretation}</p>
+            </div>
+
+            {/* Test 3: Chi-Square */}
+            <div style={styles.card}>
+              <span style={styles.testTag}>CHI-SQUARE INDEPENDENCE</span>
+              <h3 style={{ margin: "8px 0 4px", fontSize: "15px", color: "#f8fafc" }}>
+                {advData.hypothesis_tests.chi_square.variables}
+              </h3>
+              <p style={{ margin: "0 0 8px", fontSize: "11px", color: "#94a3b8" }}>
+                {advData.hypothesis_tests.chi_square.null_hypothesis}
+              </p>
+              <div style={styles.statRow}>
+                <span>
+                  χ² Statistic:{" "}
+                  <strong style={{ color: "#38bdf8" }}>
+                    {advData.hypothesis_tests.chi_square.chi2_statistic}
+                  </strong>{" "}
+                  (dof = {advData.hypothesis_tests.chi_square.dof})
+                </span>
+                <span>
+                  p-value:{" "}
+                  <strong style={{ color: "#a855f7" }}>
+                    {advData.hypothesis_tests.chi_square.p_value}
+                  </strong>
+                </span>
+              </div>
+              <p style={styles.testNote}>{advData.hypothesis_tests.chi_square.interpretation}</p>
+            </div>
+          </div>
+
+          {/* 3. PCA + K-Means Clustering Scatter & Box Plots */}
+          <div style={styles.edaGrid}>
+            <div style={styles.card}>
+              <h3 style={styles.cardTitle}>
+                PCA 2D Projection & K-Means Archetype Clusters (k = 4)
+              </h3>
+              <p style={{ margin: "4px 0 10px", fontSize: "12px", color: "#94a3b8" }}>
+                Standardized 7D game profiles reduced to 2 principal components (
+                {advData.pca.total_variance_explained}% variance retained).
+              </p>
+              <PlotlyChart
+                style={{ width: "100%", height: "380px" }}
+                data={advData.pca.cluster_summaries.map((cl, idx) => {
+                  const pts = advData.pca.points.filter((p) => p.cluster_id === cl.cluster_id);
+                  return {
+                    x: pts.map((p) => p.pc1),
+                    y: pts.map((p) => p.pc2),
+                    text: pts.map(
+                      (p) => `${p.title}<br>${cl.label}<br>Overall Intensity: ${p.overall_intensity}`
+                    ),
+                    mode: "markers",
+                    type: "scatter",
+                    name: cl.label,
+                    marker: {
+                      size: 11,
+                      color: CLUSTER_COLORS[idx % CLUSTER_COLORS.length],
+                      line: { width: 1, color: "#0f172a" },
+                    },
+                  };
+                })}
+                layout={{
+                  margin: { t: 20, r: 20, b: 60, l: 55 },
+                  xaxis: {
+                    title: `PC1 (${advData.pca.explained_variance_pct[0]}% Variance)`,
+                    gridcolor: "#334155",
+                  },
+                  yaxis: {
+                    title: `PC2 (${advData.pca.explained_variance_pct[1]}% Variance)`,
+                    gridcolor: "#334155",
+                  },
+                  legend: { orientation: "h", y: -0.22 },
+                }}
+              />
+            </div>
+
+            {/* 4. Outlier & Distribution Box Plots across All 7 Dimensions */}
+            <div style={styles.card}>
+              <h3 style={styles.cardTitle}>
+                7-Dimensional Score Distributions & Outlier Box Plots
+              </h3>
+              <p style={{ margin: "4px 0 10px", fontSize: "12px", color: "#94a3b8" }}>
+                Inspecting median, interquartile range (IQR), and extreme high-strain outliers
+                across every engineered index.
+              </p>
+              <PlotlyChart
+                style={{ width: "100%", height: "380px" }}
+                data={advData.boxplots.map((b, idx) => ({
+                  y: b.values,
+                  name: b.dimension,
+                  type: "box",
+                  boxpoints: "outliers",
+                  marker: {
+                    color: [
+                      "#38bdf8",
+                      "#34d399",
+                      "#a855f7",
+                      "#f59e0b",
+                      "#ec4899",
+                      "#ef4444",
+                      "#6366f1",
+                    ][idx % 7],
+                  },
+                }))}
+                layout={{
+                  margin: { t: 20, r: 20, b: 85, l: 45 },
+                  showlegend: false,
+                  xaxis: { automargin: true },
+                  yaxis: { title: "Score (1–10 Scale)", range: [0, 10.5], gridcolor: "#334155" },
+                }}
+              />
+            </div>
+          </div>
+
+          {/* 5. Parallel Coordinates Plot across All 7 Dimensions */}
+          <div style={styles.card}>
+            <h3 style={styles.cardTitle}>
+              Multivariate Parallel Coordinates Plot (All 7 Well-Being Dimensions)
+            </h3>
+            <p style={{ margin: "4px 0 10px", fontSize: "12px", color: "#94a3b8" }}>
+              Drag vertically along any axis to filter game trajectories across all seven dimensions
+              simultaneously. Colored by Overall Intensity.
+            </p>
+            <PlotlyChart
+              style={{ width: "100%", height: "390px" }}
+              data={[
+                {
+                  type: "parcoords",
+                  line: {
+                    color: advData.pca.points.map((p) => p.overall_intensity),
+                    colorscale: "Portland",
+                    showscale: true,
+                    cmin: 2,
+                    cmax: 8.5,
+                    colorbar: { title: "Intensity" },
+                  },
+                  dimensions: FEATURE_KEYS.map((key, idx) => ({
+                    range: [1, 10],
+                    label: AXIS_LABELS[idx],
+                    values: advData.pca.points.map((p) => p.scores[key]),
+                  })),
+                },
+              ]}
+              layout={{
+                margin: { t: 45, r: 50, b: 25, l: 50 },
+              }}
+            />
+          </div>
+        </main>
+      )}
+
+      {/* TAB 5: METHODOLOGY, DATA DICTIONARY & GOVERNANCE */}
+      {activeTab === "about" && (
+        <main
+          style={{
+            maxWidth: "1320px",
+            margin: "24px auto",
+            padding: "0 20px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "18px",
+          }}
+        >
+          <div style={styles.card}>
+            <h2 style={styles.cardTitle}>
+              <BookOpen size={18} color="#38bdf8" /> WellPlay DAV: Mathematical Methodology & Data
+              Governance
+            </h2>
+            <p style={{ margin: "8px 0 0", fontSize: "13px", color: "#cbd5e1", lineHeight: 1.65 }}>
+              <strong>WellPlay DAV</strong> is a 5th-semester B.Tech Data Analysis & Visualization
+              platform combining deterministic feature engineering, statistical hypothesis testing,
+              unsupervised clustering, and an{" "}
+              <strong>Asymmetric Weighted Distance Recommendation Engine</strong>.
+            </p>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+                gap: "14px",
+                marginTop: "16px",
+              }}
+            >
+              <div style={styles.explainBox}>
+                <h4 style={{ margin: "0 0 8px", fontSize: "14px", color: "#38bdf8" }}>
+                  1. Asymmetric Weighted Scoring Formula
+                </h4>
+                <p style={{ margin: 0, fontSize: "12px", color: "#cbd5e1", lineHeight: 1.6 }}>
+                  Unlike standard symmetric Euclidean distance—which penalizes a gentle game just as
+                  heavily as an overwhelming game—WellPlay applies an{" "}
+                  <strong>asymmetric multiplier (1.8×)</strong> whenever a game's demand exceeds the
+                  user's physiological or psychological ceiling, versus a mild{" "}
+                  <strong>0.45× distance factor</strong> when the game is gentler than the ceiling.
+                </p>
+              </div>
+
+              <div style={styles.explainBox}>
+                <h4 style={{ margin: "0 0 8px", fontSize: "14px", color: "#34d399" }}>
+                  2. Hybrid Dataset Provenance & Limitations
+                </h4>
+                <p style={{ margin: 0, fontSize: "12px", color: "#cbd5e1", lineHeight: 1.6 }}>
+                  <strong>Games Catalog (N = 250):</strong> Engineered from curated real-world Steam
+                  & HowLongToBeat benchmarks across PC and Mobile titles.
+                  <br />
+                  <strong>User Wellness Cohort (N = 500):</strong> Statistically modeled synthetic
+                  profiles created to evaluate constraint-aware recommendations without exposing
+                  real medical records. Statistical findings demonstrate correlations within the
+                  engineered dataset and do not constitute clinical advice.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Data Dictionary Table */}
+          <div style={styles.card}>
+            <h3 style={{ ...styles.cardTitle, marginBottom: "12px" }}>
+              7-Axis Engineered Feature Data Dictionary
+            </h3>
+            <div style={{ overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "12px" }}>
+                <thead>
+                  <tr
+                    style={{
+                      borderBottom: "1px solid #334155",
+                      color: "#94a3b8",
+                      textAlign: "left",
+                    }}
+                  >
+                    <th style={{ padding: "10px" }}>Feature Column</th>
+                    <th style={{ padding: "10px" }}>Scale</th>
+                    <th style={{ padding: "10px" }}>Engineering Definition</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {DATA_DICTIONARY.map((item) => (
+                    <tr key={item.field} style={{ borderBottom: "1px solid rgba(51,65,85,0.5)" }}>
+                      <td style={{ padding: "10px", fontFamily: "monospace", color: "#38bdf8" }}>
+                        {item.field}
+                      </td>
+                      <td style={{ padding: "10px", color: "#34d399", fontWeight: 600 }}>
+                        {item.scale}
+                      </td>
+                      <td style={{ padding: "10px", color: "#cbd5e1" }}>{item.definition}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </main>
@@ -713,7 +1511,7 @@ const styles = {
     alignItems: "center",
     justifyContent: "center",
   },
-  tabGroup: { display: "flex", gap: "8px" },
+  tabGroup: { display: "flex", gap: "8px", flexWrap: "wrap" },
   tab: {
     display: "flex",
     alignItems: "center",
@@ -796,6 +1594,19 @@ const styles = {
     fontSize: "13px",
     cursor: "pointer",
   },
+  exportBtn: {
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+    padding: "6px 12px",
+    borderRadius: "8px",
+    border: "1px solid #34d399",
+    background: "rgba(52, 211, 153, 0.12)",
+    color: "#34d399",
+    fontSize: "12px",
+    fontWeight: 600,
+    cursor: "pointer",
+  },
   heroSpotlight: {
     background: "linear-gradient(135deg, #0f2942 0%, #133b3a 100%)",
     border: "1.5px solid #34d399",
@@ -869,9 +1680,9 @@ const styles = {
   },
   radarSplit: {
     display: "grid",
-    gridTemplateColumns: "1.2fr 1fr",
+    gridTemplateColumns: "1.15fr 1fr",
     gap: "16px",
-    alignItems: "center",
+    alignItems: "start",
     marginTop: "10px",
   },
   explainBox: {
@@ -929,5 +1740,46 @@ const styles = {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(520px, 1fr))",
     gap: "18px",
+  },
+  hypoGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+    gap: "16px",
+  },
+  testTag: {
+    display: "inline-block",
+    fontSize: "10px",
+    fontWeight: 700,
+    letterSpacing: "0.06em",
+    color: "#38bdf8",
+    background: "rgba(56, 189, 248, 0.12)",
+    padding: "3px 8px",
+    borderRadius: "5px",
+  },
+  statRow: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "4px",
+    fontSize: "12px",
+    color: "#e2e8f0",
+    background: "#0f172a",
+    padding: "10px",
+    borderRadius: "8px",
+    border: "1px solid #334155",
+    margin: "8px 0",
+  },
+  testNote: {
+    margin: 0,
+    fontSize: "12px",
+    color: "#94a3b8",
+    lineHeight: 1.5,
+  },
+  auditBadge: {
+    background: "#0f172a",
+    border: "1px solid #334155",
+    padding: "6px 12px",
+    borderRadius: "8px",
+    fontSize: "12px",
+    color: "#cbd5e1",
   },
 };
