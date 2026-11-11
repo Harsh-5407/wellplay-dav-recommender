@@ -15,6 +15,7 @@ import {
   ShieldCheck,
   Sparkles,
   UserCheck,
+  Zap,
 } from "lucide-react";
 import PlotlyChart from "./PlotlyChart";
 
@@ -42,43 +43,117 @@ const FEATURE_KEYS = [
 
 const CLUSTER_COLORS = ["#38bdf8", "#34d399", "#a855f7", "#f59e0b"];
 
+const DEMO_PERSONAS = [
+  {
+    id: "burnout",
+    label: "Burnout Student",
+    profile: {
+      age: 21,
+      gender: "Male",
+      employment_status: "Student",
+      eye_strain_sensitivity: 8.0,
+      primary_mental_state: "Overthinking",
+      daily_free_time_mins: 60,
+      preferred_platform: "Any",
+      recommendation_mode: "Relaxation",
+    },
+  },
+  {
+    id: "mobile",
+    label: "Cozy Mobile Break",
+    profile: {
+      age: 26,
+      gender: "Female",
+      employment_status: "Full-Time Employed",
+      eye_strain_sensitivity: 6.5,
+      primary_mental_state: "High Stress",
+      daily_free_time_mins: 40,
+      preferred_platform: "Mobile",
+      recommendation_mode: "Casual",
+    },
+  },
+  {
+    id: "hardcore",
+    label: "Weekend Hardcore",
+    profile: {
+      age: 22,
+      gender: "Male",
+      employment_status: "Student",
+      eye_strain_sensitivity: 2.5,
+      primary_mental_state: "Relaxed",
+      daily_free_time_mins: 180,
+      preferred_platform: "PC",
+      recommendation_mode: "High Energy",
+    },
+  },
+];
+
 const DATA_DICTIONARY = [
   {
     field: "visual_strain_score",
     scale: "1.0 – 10.0",
-    definition: "Measures camera motion speed, particle density, and screen-flash fatigue (includes +0.6 mobile screen modifier).",
+    definition:
+      "Measures camera motion speed, particle density, and screen-flash fatigue (includes +0.6 mobile screen modifier).",
   },
   {
     field: "cognitive_load_score",
     scale: "1.0 – 10.0",
-    definition: "Quantifies strategic planning, multi-tasking, and working-memory overhead required during gameplay.",
+    definition:
+      "Quantifies strategic planning, multi-tasking, and working-memory overhead required during gameplay.",
   },
   {
     field: "session_commitment_score",
     scale: "1.0 – 10.0",
-    definition: "Log-scaled (np.log1p) function of average completion hours and save-point flexibility.",
+    definition:
+      "Log-scaled (np.log1p) function of average completion hours and save-point flexibility.",
   },
   {
     field: "social_pressure_score",
     scale: "1.0 – 10.0",
-    definition: "Captures competitive PvP stress, team dependency, and real-time communication pressure.",
+    definition:
+      "Captures competitive PvP stress, team dependency, and real-time communication pressure.",
   },
   {
     field: "emotional_heaviness_score",
     scale: "1.0 – 10.0",
-    definition: "Evaluates bleak narrative themes, psychological horror, or high-tension emotional stakes.",
+    definition:
+      "Evaluates bleak narrative themes, psychological horror, or high-tension emotional stakes.",
   },
   {
     field: "reflex_intensity_score",
     scale: "1.0 – 10.0",
-    definition: "Measures Actions-Per-Minute (APM), twitch reaction windows, and precision timing demands.",
+    definition:
+      "Measures Actions-Per-Minute (APM), twitch reaction windows, and precision timing demands.",
   },
   {
     field: "grind_complexity_score",
     scale: "1.0 – 10.0",
-    definition: "Captures repetitive resource farming, complex skill trees, and micro-management loops.",
+    definition:
+      "Captures repetitive resource farming, complex skill trees, and micro-management loops.",
   },
 ];
+
+const getPlatformBadgeStyle = (platform) => {
+  if (platform === "Mobile") {
+    return {
+      background: "rgba(168, 85, 247, 0.16)",
+      color: "#c084fc",
+      border: "1px solid rgba(168, 85, 247, 0.4)",
+    };
+  }
+  if (platform === "PC & Mobile") {
+    return {
+      background: "rgba(52, 211, 153, 0.15)",
+      color: "#34d399",
+      border: "1px solid rgba(52, 211, 153, 0.4)",
+    };
+  }
+  return {
+    background: "rgba(56, 189, 248, 0.15)",
+    color: "#38bdf8",
+    border: "1px solid rgba(56, 189, 248, 0.4)",
+  };
+};
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("recommender");
@@ -88,6 +163,8 @@ export default function App() {
   const [selectedGame, setSelectedGame] = useState(null);
   const [catalogGames, setCatalogGames] = useState([]);
   const [compareIds, setCompareIds] = useState([]);
+  const [comparePlatformFilter, setComparePlatformFilter] = useState("Any");
+  const [activePersona, setActivePersona] = useState("burnout");
   const [loading, setLoading] = useState(false);
 
   const [profile, setProfile] = useState({
@@ -125,19 +202,21 @@ export default function App() {
       .catch((err) => console.error("Advanced analytics fetch failed:", err));
   }, []);
 
-  // Fetch recommendations whenever profile is submitted
-  const fetchRecommendations = () => {
+  // Fetch recommendations with explicit profile override support
+  const fetchRecommendations = (targetProfile = profile) => {
     setLoading(true);
     fetch(`${API_BASE}/api/recommend`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(profile),
+      body: JSON.stringify(targetProfile),
     })
       .then((res) => res.json())
       .then((data) => {
         setRecData(data);
         if (data.recommendations?.length > 0) {
           setSelectedGame(data.recommendations[0]);
+        } else {
+          setSelectedGame(null);
         }
         setLoading(false);
       })
@@ -147,11 +226,29 @@ export default function App() {
       });
   };
 
+  // Auto-refresh on mount and whenever Platform or Algorithm Mode changes
   useEffect(() => {
-    fetchRecommendations();
-  }, []);
+    fetchRecommendations(profile);
+  }, [profile.preferred_platform, profile.recommendation_mode]);
 
-  // Phase 4: Export Personalized Recommendations as CSV
+  const applyDemoPersona = (persona) => {
+    setActivePersona(persona.id);
+    setProfile(persona.profile);
+    fetchRecommendations(persona.profile);
+  };
+
+  const sendToCompare = (gameId, e) => {
+    e.stopPropagation();
+    setComparePlatformFilter("Any");
+    setCompareIds((prev) => {
+      if (prev.includes(gameId)) return prev;
+      if (prev.length >= 3) return [prev[1], prev[2], gameId];
+      return [...prev, gameId];
+    });
+    setActiveTab("compare");
+  };
+
+  // Export Personalized Recommendations as CSV
   const exportRecommendationsCSV = () => {
     if (!recData?.recommendations?.length) return;
     const headers = [
@@ -200,7 +297,7 @@ export default function App() {
         theta: [...AXIS_LABELS, AXIS_LABELS[0]],
         fill: "toself",
         name: "Your Comfort Ceiling",
-        fillcolor: "rgba(56, 189, 248, 0.18)",
+        fillcolor: "rgba(56, 189, 248, 0.16)",
         line: { color: "#38bdf8", width: 2, dash: "dash" },
       },
       {
@@ -224,8 +321,52 @@ export default function App() {
   const breakIntervalMins =
     recData?.break_interval_mins ?? (profile.eye_strain_sensitivity >= 7 ? 20 : 40);
 
+  const filteredCatalog = catalogGames.filter((g) => {
+    if (comparePlatformFilter === "Any") return true;
+    if (comparePlatformFilter === "Mobile")
+      return g.platform === "Mobile" || g.platform === "PC & Mobile";
+    return g.platform === "PC" || g.platform === "PC & Mobile";
+  });
+
   return (
     <div style={styles.page}>
+      {/* Lightweight Responsive & Micro-Interaction Styles */}
+      <style>{`
+        .wp-game-card {
+          transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+        }
+        .wp-game-card:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 10px 22px -6px rgba(2, 6, 23, 0.75);
+        }
+        .wp-btn-hover {
+          transition: filter 0.15s ease, transform 0.12s ease;
+        }
+        .wp-btn-hover:hover {
+          filter: brightness(1.08);
+          transform: translateY(-1px);
+        }
+        @media (max-width: 1024px) {
+          .wp-main-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .wp-sticky-col {
+            position: static !important;
+          }
+          .wp-radar-split {
+            grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .wp-games-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .wp-eda-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
+
       {/* Top Navbar */}
       <header style={styles.header}>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -279,13 +420,34 @@ export default function App() {
 
       {/* TAB 1: PERSONAL RECOMMENDER */}
       {activeTab === "recommender" && (
-        <main style={styles.mainGrid}>
-          {/* Left Column: Sticky Controls + Live Computed Comfort Thresholds */}
-          <div style={styles.leftStickyCol}>
+        <main className="wp-main-grid" style={styles.mainGrid}>
+          {/* Left Column: Sticky Controls + Quick Demo Personas + Live Comfort Thresholds */}
+          <div className="wp-sticky-col" style={styles.leftStickyCol}>
             <aside style={styles.card}>
               <h2 style={styles.cardTitle}>
                 <UserCheck size={17} color="#38bdf8" /> User Wellness & Demographic Profile
               </h2>
+
+              {/* Quick Demo Preset Personas */}
+              <div style={{ marginTop: "12px" }}>
+                <span style={{ display: "block", fontSize: "11px", color: "#94a3b8", marginBottom: "6px" }}>
+                  <Zap size={11} style={{ verticalAlign: "middle", marginRight: 4, color: "#f59e0b" }} />
+                  Quick Demo Personas:
+                </span>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                  {DEMO_PERSONAS.map((p) => (
+                    <button
+                      key={p.id}
+                      onClick={() => applyDemoPersona(p)}
+                      style={
+                        activePersona === p.id ? styles.personaChipActive : styles.personaChip
+                      }
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
               <div style={styles.formGroup}>
                 <label style={styles.label}>
@@ -296,7 +458,10 @@ export default function App() {
                   min="12"
                   max="65"
                   value={profile.age}
-                  onChange={(e) => setProfile({ ...profile, age: Number(e.target.value) })}
+                  onChange={(e) => {
+                    setActivePersona("");
+                    setProfile({ ...profile, age: Number(e.target.value) });
+                  }}
                   style={styles.slider}
                 />
               </div>
@@ -306,7 +471,10 @@ export default function App() {
                   <label style={styles.label}>Gender</label>
                   <select
                     value={profile.gender}
-                    onChange={(e) => setProfile({ ...profile, gender: e.target.value })}
+                    onChange={(e) => {
+                      setActivePersona("");
+                      setProfile({ ...profile, gender: e.target.value });
+                    }}
                     style={styles.select}
                   >
                     <option>Male</option>
@@ -319,7 +487,10 @@ export default function App() {
                   <label style={styles.label}>Employment Status</label>
                   <select
                     value={profile.employment_status}
-                    onChange={(e) => setProfile({ ...profile, employment_status: e.target.value })}
+                    onChange={(e) => {
+                      setActivePersona("");
+                      setProfile({ ...profile, employment_status: e.target.value });
+                    }}
                     style={styles.select}
                   >
                     <option>Student</option>
@@ -339,7 +510,10 @@ export default function App() {
                 </label>
                 <select
                   value={profile.preferred_platform}
-                  onChange={(e) => setProfile({ ...profile, preferred_platform: e.target.value })}
+                  onChange={(e) => {
+                    setActivePersona("");
+                    setProfile({ ...profile, preferred_platform: e.target.value });
+                  }}
                   style={styles.select}
                 >
                   <option value="Any">Any Device (PC & Mobile)</option>
@@ -359,9 +533,10 @@ export default function App() {
                   max="10"
                   step="0.5"
                   value={profile.eye_strain_sensitivity}
-                  onChange={(e) =>
-                    setProfile({ ...profile, eye_strain_sensitivity: Number(e.target.value) })
-                  }
+                  onChange={(e) => {
+                    setActivePersona("");
+                    setProfile({ ...profile, eye_strain_sensitivity: Number(e.target.value) });
+                  }}
                   style={styles.slider}
                 />
                 <div style={styles.hintRow}>
@@ -377,9 +552,10 @@ export default function App() {
                 </label>
                 <select
                   value={profile.primary_mental_state}
-                  onChange={(e) =>
-                    setProfile({ ...profile, primary_mental_state: e.target.value })
-                  }
+                  onChange={(e) => {
+                    setActivePersona("");
+                    setProfile({ ...profile, primary_mental_state: e.target.value });
+                  }}
                   style={styles.select}
                 >
                   <option value="Overthinking">Overthinking / Racing Thoughts</option>
@@ -399,9 +575,10 @@ export default function App() {
                   max="240"
                   step="10"
                   value={profile.daily_free_time_mins}
-                  onChange={(e) =>
-                    setProfile({ ...profile, daily_free_time_mins: Number(e.target.value) })
-                  }
+                  onChange={(e) => {
+                    setActivePersona("");
+                    setProfile({ ...profile, daily_free_time_mins: Number(e.target.value) });
+                  }}
                   style={styles.slider}
                 />
               </div>
@@ -414,9 +591,10 @@ export default function App() {
                 </label>
                 <select
                   value={profile.recommendation_mode}
-                  onChange={(e) =>
-                    setProfile({ ...profile, recommendation_mode: e.target.value })
-                  }
+                  onChange={(e) => {
+                    setActivePersona("");
+                    setProfile({ ...profile, recommendation_mode: e.target.value });
+                  }}
                   style={{
                     ...styles.select,
                     borderColor: "#38bdf8",
@@ -432,7 +610,11 @@ export default function App() {
                 </select>
               </div>
 
-              <button onClick={fetchRecommendations} style={styles.primaryBtn}>
+              <button
+                className="wp-btn-hover"
+                onClick={() => fetchRecommendations(profile)}
+                style={styles.primaryBtn}
+              >
                 {loading ? "Analyzing Constraints..." : "Run Multi-Factor Recommendation"}
               </button>
             </aside>
@@ -487,6 +669,7 @@ export default function App() {
                               width: `${(val / 10) * 100}%`,
                               height: "100%",
                               background: val <= 4 ? "#34d399" : "#38bdf8",
+                              transition: "width 0.3s ease",
                             }}
                           />
                         </div>
@@ -513,12 +696,21 @@ export default function App() {
                   }}
                 >
                   <div>
-                    <span style={styles.heroEyebrow}>
-                      ★ #1 RECOMMENDED • {recData.recommendations[0].match_category.toUpperCase()}
-                    </span>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "6px" }}>
+                      <span style={styles.heroEyebrow}>
+                        ★ #1 RECOMMENDED • {recData.recommendations[0].match_category.toUpperCase()}
+                      </span>
+                      <span
+                        style={{
+                          ...styles.platformPill,
+                          ...getPlatformBadgeStyle(recData.recommendations[0].platform),
+                        }}
+                      >
+                        {recData.recommendations[0].platform}
+                      </span>
+                    </div>
                     <h2 style={styles.heroTitle}>{recData.recommendations[0].title}</h2>
-                    <p style={{ margin: "4px 0 0", fontSize: "13px", color: "#cbd5e1" }}>
-                      Platform: <strong>{recData.recommendations[0].platform}</strong> &nbsp;•&nbsp;{" "}
+                    <p style={{ margin: "6px 0 0", fontSize: "13px", color: "#cbd5e1" }}>
                       {recData.recommendations[0].tags.split(",").join("  •  ")}
                     </p>
                   </div>
@@ -578,18 +770,23 @@ export default function App() {
                   <Gamepad2 size={18} color="#38bdf8" /> Top Recommended Games (Click to Inspect)
                 </h2>
                 {recData?.recommendations?.length > 0 && (
-                  <button onClick={exportRecommendationsCSV} style={styles.exportBtn}>
+                  <button
+                    className="wp-btn-hover"
+                    onClick={exportRecommendationsCSV}
+                    style={styles.exportBtn}
+                  >
                     <Download size={14} /> Export CSV Report
                   </button>
                 )}
               </div>
 
-              <div style={styles.gamesGrid}>
+              <div className="wp-games-grid" style={styles.gamesGrid}>
                 {recData?.recommendations?.slice(0, 6).map((game, index) => {
                   const isSelected = selectedGame?.game_id === game.game_id;
                   return (
                     <div
                       key={game.game_id}
+                      className="wp-game-card"
                       onClick={() => setSelectedGame(game)}
                       style={{
                         ...styles.gameCard,
@@ -605,13 +802,23 @@ export default function App() {
                           display: "flex",
                           justifyContent: "space-between",
                           alignItems: "center",
-                          marginBottom: "6px",
+                          marginBottom: "8px",
                         }}
                       >
                         <span style={index === 0 ? styles.rankBadgeTop : styles.rankBadge}>
                           #{index + 1} PICK
                         </span>
-                        <span style={styles.scoreTag}>{game.match_score}%</span>
+                        <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+                          <span
+                            style={{
+                              ...styles.platformPill,
+                              ...getPlatformBadgeStyle(game.platform),
+                            }}
+                          >
+                            {game.platform}
+                          </span>
+                          <span style={styles.scoreTag}>{game.match_score}%</span>
+                        </div>
                       </div>
 
                       <h3
@@ -625,9 +832,25 @@ export default function App() {
                         {game.title}
                       </h3>
 
-                      <p style={{ margin: "0 0 8px", fontSize: "11px", color: "#94a3b8" }}>
-                        {game.match_category} • {game.platform}
-                      </p>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        <span style={{ fontSize: "11px", color: "#94a3b8" }}>
+                          {game.match_category}
+                        </span>
+                        <button
+                          onClick={(e) => sendToCompare(game.game_id, e)}
+                          style={styles.miniCompareBtn}
+                          title="Add to Compare Games tab"
+                        >
+                          + Compare
+                        </button>
+                      </div>
 
                       <div style={styles.miniMetrics}>
                         <span>
@@ -650,7 +873,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* 3. DEEP-DIVE RADAR & EXPLAINABILITY */}
+            {/* 3. DEEP-DIVE RADAR & VISUAL PENALTY BREAKDOWN */}
             {selectedGame && recData && (
               <div style={styles.card}>
                 <div
@@ -668,17 +891,17 @@ export default function App() {
                       {selectedGame.title}"
                     </h2>
                     <p style={{ margin: "4px 0 0", fontSize: "12px", color: "#94a3b8" }}>
-                      Comparing game intensity vs your comfort ceiling. Model score reflects
-                      constraint alignment, not objective game quality.
+                      Visual comparison of game demand vs. your comfort ceiling (Model score
+                      reflects constraint alignment, not objective game quality).
                     </p>
                   </div>
                   <span style={styles.matchPill}>{selectedGame.match_category}</span>
                 </div>
 
-                <div style={styles.radarSplit}>
+                <div className="wp-radar-split" style={styles.radarSplit}>
                   <PlotlyChart
                     data={buildRadarData()}
-                    style={{ width: "100%", height: "350px" }}
+                    style={{ width: "100%", height: "355px" }}
                     layout={{
                       margin: { t: 35, r: 85, b: 35, l: 95 },
                       polar: {
@@ -696,15 +919,15 @@ export default function App() {
                   />
 
                   <div style={styles.explainBox}>
-                    <h4 style={{ margin: "0 0 10px", fontSize: "14px", color: "#38bdf8" }}>
-                      Dimension-by-Dimension Penalty
+                    <h4 style={{ margin: "0 0 12px", fontSize: "14px", color: "#38bdf8" }}>
+                      Dimension-by-Dimension Comfort Gauge
                     </h4>
 
                     <div
                       style={{
                         display: "flex",
                         flexDirection: "column",
-                        gap: "8px",
+                        gap: "10px",
                         fontSize: "12px",
                       }}
                     >
@@ -712,25 +935,56 @@ export default function App() {
                         const breakdown = selectedGame.match_breakdown[key];
                         const isExceeding = breakdown.status === "Exceeds Limit";
                         return (
-                          <div
-                            key={key}
-                            style={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                              paddingBottom: "4px",
-                              borderBottom: "1px solid rgba(255,255,255,0.05)",
-                            }}
-                          >
-                            <span style={{ color: "#cbd5e1" }}>{AXIS_LABELS[idx]}</span>
-                            <span
+                          <div key={key}>
+                            <div
                               style={{
-                                color: isExceeding ? "#ef4444" : "#34d399",
-                                fontWeight: 600,
+                                display: "flex",
+                                justifyContent: "space-between",
+                                marginBottom: "3px",
                               }}
                             >
-                              {breakdown.game_value} / {breakdown.user_ceiling}{" "}
-                              {isExceeding ? "(Penalty applied)" : ""}
-                            </span>
+                              <span style={{ color: "#cbd5e1" }}>{AXIS_LABELS[idx]}</span>
+                              <span
+                                style={{
+                                  color: isExceeding ? "#f87171" : "#34d399",
+                                  fontWeight: 600,
+                                  fontSize: "11px",
+                                }}
+                              >
+                                {breakdown.game_value} / {breakdown.user_ceiling} ceiling{" "}
+                                {isExceeding ? "(Penalty)" : "✓"}
+                              </span>
+                            </div>
+                            {/* Visual Bar with Ceiling Marker */}
+                            <div
+                              style={{
+                                position: "relative",
+                                height: "6px",
+                                background: "#1e293b",
+                                borderRadius: "999px",
+                                overflow: "hidden",
+                              }}
+                            >
+                              <div
+                                style={{
+                                  width: `${(breakdown.game_value / 10) * 100}%`,
+                                  height: "100%",
+                                  background: isExceeding ? "#ef4444" : "#34d399",
+                                  borderRadius: "999px",
+                                }}
+                              />
+                              <div
+                                style={{
+                                  position: "absolute",
+                                  top: 0,
+                                  bottom: 0,
+                                  left: `${(breakdown.user_ceiling / 10) * 100}%`,
+                                  width: "2px",
+                                  background: "#38bdf8",
+                                }}
+                                title={`Comfort Ceiling: ${breakdown.user_ceiling}`}
+                              />
+                            </div>
                           </div>
                         );
                       })}
@@ -782,14 +1036,44 @@ export default function App() {
           }}
         >
           <div style={styles.card}>
-            <h2 style={styles.cardTitle}>
-              <GitCompare size={18} color="#38bdf8" /> Side-by-Side 7-Dimensional Game Comparison
-              (Select 2–3 Games)
-            </h2>
-            <p style={{ margin: "6px 0 14px", fontSize: "12px", color: "#94a3b8" }}>
-              Compare structural cognitive, visual, and emotional load across titles on a unified
-              1–10 scale.
-            </p>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap",
+                gap: "10px",
+              }}
+            >
+              <div>
+                <h2 style={styles.cardTitle}>
+                  <GitCompare size={18} color="#38bdf8" /> Side-by-Side 7-Dimensional Game Comparison
+                  (Select 2–3 Games)
+                </h2>
+                <p style={{ margin: "6px 0 14px", fontSize: "12px", color: "#94a3b8" }}>
+                  Compare structural cognitive, visual, and emotional load across titles on a
+                  unified 1–10 scale.
+                </p>
+              </div>
+
+              {/* Platform Filter Pills for Dropdown Lists */}
+              <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+                <span style={{ fontSize: "11px", color: "#94a3b8" }}>Filter Catalog:</span>
+                {["Any", "PC", "Mobile"].map((plat) => (
+                  <button
+                    key={plat}
+                    onClick={() => setComparePlatformFilter(plat)}
+                    style={
+                      comparePlatformFilter === plat
+                        ? styles.personaChipActive
+                        : styles.personaChip
+                    }
+                  >
+                    {plat}
+                  </button>
+                ))}
+              </div>
+            </div>
 
             {/* 3 Game Selectors */}
             <div
@@ -819,7 +1103,7 @@ export default function App() {
                     style={styles.select}
                   >
                     {slotIdx === 2 && <option value="">-- None --</option>}
-                    {catalogGames.map((g) => (
+                    {filteredCatalog.map((g) => (
                       <option key={g.game_id} value={g.game_id}>
                         {g.title} ({g.platform})
                       </option>
@@ -856,7 +1140,7 @@ export default function App() {
               });
 
               return (
-                <div style={styles.radarSplit}>
+                <div className="wp-radar-split" style={styles.radarSplit}>
                   <div style={styles.card}>
                     <h3 style={{ ...styles.cardTitle, marginBottom: "10px" }}>
                       7-Axis Intensity Overlay
@@ -912,7 +1196,14 @@ export default function App() {
                             <td style={{ padding: "8px", color: "#cbd5e1" }}>Platform</td>
                             {compared.map((g) => (
                               <td key={g.game_id} style={{ padding: "8px" }}>
-                                {g.platform}
+                                <span
+                                  style={{
+                                    ...styles.platformPill,
+                                    ...getPlatformBadgeStyle(g.platform),
+                                  }}
+                                >
+                                  {g.platform}
+                                </span>
                               </td>
                             ))}
                             <td style={{ padding: "8px", color: "#64748b" }}>—</td>
@@ -1007,7 +1298,7 @@ export default function App() {
           </div>
 
           {/* Charts Grid */}
-          <div style={styles.edaGrid}>
+          <div className="wp-eda-grid" style={styles.edaGrid}>
             {/* Chart 1: 7-Factor Correlation Heatmap */}
             <div style={styles.card}>
               <h3 style={styles.cardTitle}>
@@ -1028,9 +1319,6 @@ export default function App() {
                 ]}
                 layout={{
                   margin: { t: 20, r: 20, b: 110, l: 145 },
-                  plot_bgcolor: "rgba(0,0,0,0)",
-                  paper_bgcolor: "rgba(0,0,0,0)",
-                  font: { color: "#cbd5e1" },
                 }}
               />
             </div>
@@ -1062,9 +1350,6 @@ export default function App() {
                   },
                 ]}
                 layout={{
-                  plot_bgcolor: "rgba(0,0,0,0)",
-                  paper_bgcolor: "rgba(0,0,0,0)",
-                  font: { color: "#cbd5e1" },
                   xaxis: { title: "Visual Strain Score (1-10)", gridcolor: "#334155" },
                   yaxis: { title: "Cognitive Load Score (1-10)", gridcolor: "#334155" },
                 }}
@@ -1129,7 +1414,7 @@ export default function App() {
         </main>
       )}
 
-      {/* TAB 4: PHASE 3 — STATISTICAL & UNSUPERVISED ML INSIGHTS */}
+      {/* TAB 4: STATISTICAL & UNSUPERVISED ML INSIGHTS */}
       {activeTab === "stats" && advData && (
         <main
           style={{
@@ -1185,7 +1470,6 @@ export default function App() {
 
           {/* 2. Strict Statistical Hypothesis Testing Cards */}
           <div style={styles.hypoGrid}>
-            {/* Test 1: Pearson vs Spearman */}
             <div style={styles.card}>
               <span style={styles.testTag}>BIVARIATE CORRELATION</span>
               <h3 style={{ margin: "8px 0 4px", fontSize: "15px", color: "#f8fafc" }}>
@@ -1210,7 +1494,6 @@ export default function App() {
               <p style={styles.testNote}>{advData.hypothesis_tests.correlation.interpretation}</p>
             </div>
 
-            {/* Test 2: One-Way ANOVA */}
             <div style={styles.card}>
               <span style={styles.testTag}>ONE-WAY ANOVA + EFFECT SIZE</span>
               <h3 style={{ margin: "8px 0 4px", fontSize: "15px", color: "#f8fafc" }}>
@@ -1238,7 +1521,6 @@ export default function App() {
               <p style={styles.testNote}>{advData.hypothesis_tests.anova.interpretation}</p>
             </div>
 
-            {/* Test 3: Chi-Square */}
             <div style={styles.card}>
               <span style={styles.testTag}>CHI-SQUARE INDEPENDENCE</span>
               <h3 style={{ margin: "8px 0 4px", fontSize: "15px", color: "#f8fafc" }}>
@@ -1267,7 +1549,7 @@ export default function App() {
           </div>
 
           {/* 3. PCA + K-Means Clustering Scatter & Box Plots */}
-          <div style={styles.edaGrid}>
+          <div className="wp-eda-grid" style={styles.edaGrid}>
             <div style={styles.card}>
               <h3 style={styles.cardTitle}>
                 PCA 2D Projection & K-Means Archetype Clusters (k = 4)
@@ -1311,7 +1593,6 @@ export default function App() {
               />
             </div>
 
-            {/* 4. Outlier & Distribution Box Plots across All 7 Dimensions */}
             <div style={styles.card}>
               <h3 style={styles.cardTitle}>
                 7-Dimensional Score Distributions & Outlier Box Plots
@@ -1349,7 +1630,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* 5. Parallel Coordinates Plot across All 7 Dimensions */}
+          {/* 4. Parallel Coordinates Plot */}
           <div style={styles.card}>
             <h3 style={styles.cardTitle}>
               Multivariate Parallel Coordinates Plot (All 7 Well-Being Dimensions)
@@ -1436,8 +1717,8 @@ export default function App() {
                   2. Hybrid Dataset Provenance & Limitations
                 </h4>
                 <p style={{ margin: 0, fontSize: "12px", color: "#cbd5e1", lineHeight: 1.6 }}>
-                  <strong>Games Catalog (N = 250):</strong> Engineered from curated real-world Steam
-                  & HowLongToBeat benchmarks across PC and Mobile titles.
+                  <strong>Games Catalog (N = 250):</strong> Engineered from 65 curated real-world
+                  Steam & HowLongToBeat benchmarks across PC and Mobile titles.
                   <br />
                   <strong>User Wellness Cohort (N = 500):</strong> Statistically modeled synthetic
                   profiles created to evaluate constraint-aware recommendations without exposing
@@ -1448,7 +1729,6 @@ export default function App() {
             </div>
           </div>
 
-          {/* Data Dictionary Table */}
           <div style={styles.card}>
             <h3 style={{ ...styles.cardTitle, marginBottom: "12px" }}>
               7-Axis Engineered Feature Data Dictionary
@@ -1568,6 +1848,25 @@ const styles = {
     alignItems: "center",
     gap: "8px",
   },
+  personaChip: {
+    padding: "4px 9px",
+    borderRadius: "999px",
+    border: "1px solid #334155",
+    background: "#0f172a",
+    color: "#cbd5e1",
+    fontSize: "11px",
+    cursor: "pointer",
+  },
+  personaChipActive: {
+    padding: "4px 9px",
+    borderRadius: "999px",
+    border: "1px solid #38bdf8",
+    background: "rgba(56, 189, 248, 0.18)",
+    color: "#38bdf8",
+    fontSize: "11px",
+    fontWeight: 600,
+    cursor: "pointer",
+  },
   formGroup: { marginTop: "14px" },
   row2: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" },
   label: { display: "block", fontSize: "12px", color: "#cbd5e1", marginBottom: "6px" },
@@ -1620,7 +1919,6 @@ const styles = {
     fontWeight: 700,
     letterSpacing: "0.08em",
     color: "#34d399",
-    marginBottom: "6px",
   },
   heroTitle: {
     margin: 0,
@@ -1653,6 +1951,13 @@ const styles = {
     borderRadius: "8px",
     fontSize: "12px",
     color: "#e2e8f0",
+  },
+  platformPill: {
+    fontSize: "10px",
+    fontWeight: 700,
+    padding: "2px 7px",
+    borderRadius: "5px",
+    letterSpacing: "0.02em",
   },
   rankBadgeTop: {
     background: "#34d399",
@@ -1701,7 +2006,16 @@ const styles = {
     borderRadius: "10px",
     border: "1.5px solid #1e293b",
     cursor: "pointer",
-    transition: "all 0.15s ease",
+  },
+  miniCompareBtn: {
+    background: "rgba(56, 189, 248, 0.12)",
+    border: "1px solid rgba(56, 189, 248, 0.35)",
+    color: "#38bdf8",
+    borderRadius: "5px",
+    padding: "2px 7px",
+    fontSize: "10px",
+    fontWeight: 600,
+    cursor: "pointer",
   },
   scoreTag: {
     background: "rgba(56, 189, 248, 0.15)",
