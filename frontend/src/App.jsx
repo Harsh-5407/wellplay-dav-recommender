@@ -121,7 +121,7 @@ export default function App() {
           </div>
           <div>
             <h1 style={{ margin: 0, fontSize: "18px", fontWeight: 700 }}>
-              WellPlay DAV Analytics
+              W e l l P l a y D A V A n a l y t i c s
             </h1>
             <p style={{ margin: 0, fontSize: "12px", color: "#94a3b8" }}>
               Constraint-Aware Multi-Factor Game Recommendation & Exploratory Dashboard
